@@ -1,0 +1,85 @@
+// Name:            Overlay
+// Description:     Component to create content areas overlaying an image
+//
+// Component:       `pm24sc-overlay`
+//
+// Adopted:         `pm24sc-overlay-icon`
+//
+// Modifier:        `pm24sc-overlay-default`
+//                  `pm24sc-overlay-primary`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$overlay-padding-horizontal:                     $global-gutter !default;
+$overlay-padding-vertical:                       $global-gutter !default;
+
+$overlay-default-background:                     rgba($global-background, 0.8) !default;
+
+$overlay-primary-background:                     rgba($global-secondary-background, 0.8) !default;
+$overlay-primary-color-mode:                     light !default;
+
+
+/* ========================================================================
+   Component: Overlay
+ ========================================================================== */
+
+.pm24sc-overlay {
+    padding: $overlay-padding-vertical $overlay-padding-horizontal;
+    @if(mixin-exists(hook-overlay)) {@include hook-overlay();}
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.pm24sc-overlay > :last-child { margin-bottom: 0; }
+
+
+/* Icon
+ ========================================================================== */
+
+.pm24sc-overlay-icon {
+    @if(mixin-exists(hook-overlay-icon)) {@include hook-overlay-icon();}
+}
+
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+.pm24sc-overlay-default {
+    background: $overlay-default-background;
+    @if(mixin-exists(hook-overlay-default)) {@include hook-overlay-default();}
+}
+
+/*
+ * Primary
+ */
+
+.pm24sc-overlay-primary {
+    background: $overlay-primary-background;
+    @if(mixin-exists(hook-overlay-primary)) {@include hook-overlay-primary();}
+}
+
+// Color Mode
+@if ( $overlay-primary-color-mode == light ) { .pm24sc-overlay-primary { @extend .pm24sc-light !optional;} }
+@if ( $overlay-primary-color-mode == dark ) { .pm24sc-overlay-primary { @extend .pm24sc-dark !optional;} }
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-overlay-misc)) {@include hook-overlay-misc();}
+
+// @mixin hook-overlay(){}
+// @mixin hook-overlay-icon(){}
+// @mixin hook-overlay-default(){}
+// @mixin hook-overlay-primary(){}
+// @mixin hook-overlay-misc(){}

@@ -1,0 +1,175 @@
+// Name:            Visibility
+// Description:     Utilities to show or hide content on breakpoints, hover or touch
+//
+// Component:       `pm24sc-hidden-*`
+//                  `pm24sc-visible-*`
+//                  `pm24sc-invisible`
+//                  `pm24sc-visible-toggle`
+//                  `pm24sc-hidden-hover`
+//                  `pm24sc-invisible-hover`
+//                  `pm24sc-hidden-touch`
+//                  `pm24sc-hidden-notouch`
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Visibility
+ ========================================================================== */
+
+/*
+ * Hidden
+ * `hidden` attribute also set here to make it stronger
+ */
+
+[hidden],
+.pm24sc-hidden { display: none !important; }
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-hidden\@s { display: none !important; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-hidden\@m { display: none !important; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-hidden\@l { display: none !important; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    .pm24sc-hidden\@xl { display: none !important; }
+
+}
+
+/*
+ * Visible
+ */
+
+/* Phone portrait and smaller */
+@media (max-width: $breakpoint-xsmall-max) {
+
+    .pm24sc-visible\@s { display: none !important; }
+
+}
+
+/* Phone landscape and smaller */
+@media (max-width: $breakpoint-small-max) {
+
+    .pm24sc-visible\@m { display: none !important; }
+
+}
+
+/* Tablet landscape and smaller */
+@media (max-width: $breakpoint-medium-max) {
+
+    .pm24sc-visible\@l { display: none !important; }
+
+}
+
+/* Desktop and smaller */
+@media (max-width: $breakpoint-large-max) {
+
+    .pm24sc-visible\@xl { display: none !important; }
+
+}
+
+
+/* Visibility
+ ========================================================================== */
+
+.pm24sc-invisible { visibility: hidden !important; }
+
+
+/* Toggle (Hover + Focus)
+ ========================================================================== */
+
+/*
+ * Hidden
+ * 1. The toggle is triggered on touch devices using `:focus` and tabindex
+ * 2. The target stays visible if any element within receives focus through keyboard
+ *    Doesn't work in Edge, yet.
+ * 3. Can't use `display: none` nor `visibility: hidden` because both are not focusable.
+ *
+ */
+
+/* 1 + 2 */
+.pm24sc-visible-toggle:not(:hover):not(:focus) .pm24sc-hidden-hover:not(:focus-within) {
+    /* 3 */
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+/*
+ * Invisible
+ */
+
+/* 1 + 2 */
+.pm24sc-visible-toggle:not(:hover):not(:focus) .pm24sc-invisible-hover:not(:focus-within) {
+    /* 3 */
+    opacity: 0 !important;
+}
+
+/*
+ * 1. Prevent tab highlighting on iOS.
+ */
+
+.pm24sc-visible-toggle {
+    /* 1 */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * Remove outline for `tabindex`
+ */
+
+.pm24sc-visible-toggle:focus { outline: none; }
+
+
+/* Touch
+ ========================================================================== */
+
+/*
+ * Hide if primary pointing device has limited accuracy, e.g. a touch screen.
+ * Works on mobile browsers: Safari, Chrome and Android browser
+ */
+
+@media (pointer: coarse) {
+    .pm24sc-hidden-touch { display: none !important; }
+}
+
+/*
+ * Hide if primary pointing device is accurate, e.g. mouse.
+ * 1. Fallback for IE11 and Firefox, because `pointer` is not supported
+ * 2. Reset if supported
+ */
+
+/* 1 */
+.pm24sc-hidden-notouch { display: none !important; }
+
+@media (pointer: coarse) {
+    .pm24sc-hidden-notouch { display: block !important; }
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-visibility-misc)) {@include hook-visibility-misc();}
+
+// @mixin hook-visibility-misc(){}

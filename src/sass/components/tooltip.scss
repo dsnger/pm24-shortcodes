@@ -1,0 +1,87 @@
+// Name:            Tooltip
+// Description:     Component to create tooltips
+//
+// Component:       `pm24sc-tooltip`
+//
+// Modifiers        `pm24sc-tooltip-top`
+//                  `pm24sc-tooltip-top-left`
+//                  `pm24sc-tooltip-top-right`
+//                  `pm24sc-tooltip-bottom`
+//                  `pm24sc-tooltip-bottom-left`
+//                  `pm24sc-tooltip-bottom-right`
+//                  `pm24sc-tooltip-left`
+//                  `pm24sc-tooltip-right`
+//
+// States:          `pm24sc-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$tooltip-z-index:                                $global-z-index + 30 !default;
+$tooltip-max-width:                              200px !default;
+$tooltip-padding-vertical:                       3px !default;
+$tooltip-padding-horizontal:                     6px !default;
+$tooltip-background:                             #666 !default;
+$tooltip-border-radius:                          2px !default;
+$tooltip-color:                                  $global-inverse-color !default;
+$tooltip-font-size:                              12px !default;
+
+$tooltip-margin:                                 10px !default;
+
+
+/* ========================================================================
+   Component: Tooltip
+ ========================================================================== */
+
+/*
+ * 1. Hide by default
+ * 2. Position
+ * 3. Remove tooltip from document flow to keep the UIkit container from changing its size when injected into the document initially
+ * 4. Dimensions
+ * 5. Style
+ */
+
+.pm24sc-tooltip {
+    /* 1 */
+    display: none;
+    /* 2 */
+    position: absolute;
+    z-index: $tooltip-z-index;
+    /* 3 */
+    top: 0;
+    /* 4 */
+    box-sizing: border-box;
+    max-width: $tooltip-max-width;
+    padding: $tooltip-padding-vertical $tooltip-padding-horizontal;
+    /* 5 */
+    background: $tooltip-background;
+    border-radius: $tooltip-border-radius;
+    color: $tooltip-color;
+    font-size: $tooltip-font-size;
+    @if(mixin-exists(hook-tooltip)) {@include hook-tooltip();}
+}
+
+/* Show */
+.pm24sc-tooltip.pm24sc-active { display: block; }
+
+
+/* Direction / Alignment modifiers
+ ========================================================================== */
+
+/* Direction */
+[class*='pm24sc-tooltip-top'] { margin-top: (-$tooltip-margin); }
+[class*='pm24sc-tooltip-bottom'] { margin-top: $tooltip-margin; }
+[class*='pm24sc-tooltip-left'] { margin-left: (-$tooltip-margin); }
+[class*='pm24sc-tooltip-right'] { margin-left: $tooltip-margin; }
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-tooltip-misc)) {@include hook-tooltip-misc();}
+
+// @mixin hook-tooltip(){}
+// @mixin hook-tooltip-misc(){}

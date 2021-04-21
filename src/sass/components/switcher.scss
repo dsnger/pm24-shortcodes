@@ -1,0 +1,47 @@
+// Name:            Switcher
+// Description:     Component to navigate through different content panes
+//
+// Component:       `pm24sc-switcher`
+//
+// States:          `pm24sc-active`
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Switcher
+ ========================================================================== */
+
+/*
+ * Reset list
+ */
+
+.pm24sc-switcher {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/* Items
+ ========================================================================== */
+
+/*
+ * Hide not active items
+ */
+
+.pm24sc-switcher > :not(.pm24sc-active) { display: none; }
+
+/*
+ * Remove margin from the last-child
+ */
+
+.pm24sc-switcher > * > :last-child { margin-bottom: 0; }
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-switcher-misc)) {@include hook-switcher-misc();}
+
+// @mixin hook-switcher-misc(){}

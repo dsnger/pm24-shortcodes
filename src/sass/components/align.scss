@@ -1,0 +1,142 @@
+// Name:            Align
+// Description:     Utilities to align embedded content
+//
+// Component:       `pm24sc-align-left-*`
+//                  `pm24sc-align-right-*`
+//                  `pm24sc-align-center`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$align-margin-horizontal:                        $global-gutter !default;
+$align-margin-vertical:                          $global-gutter !default;
+
+$align-margin-horizontal-l:                      $global-medium-gutter !default;
+
+
+/* ========================================================================
+   Component: Align
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+[class*='pm24sc-align'] {
+    display: block;
+    margin-bottom: $align-margin-vertical;
+}
+
+* + [class*='pm24sc-align'] { margin-top: $align-margin-vertical; }
+
+/*
+ * Center
+ */
+
+.pm24sc-align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+ * Left/Right
+ */
+
+.pm24sc-align-left {
+    margin-top: 0;
+    margin-right: $align-margin-horizontal;
+    float: left;
+}
+
+.pm24sc-align-right {
+    margin-top: 0;
+    margin-left: $align-margin-horizontal;
+    float: right;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-align-left\@s {
+        margin-top: 0;
+        margin-right: $align-margin-horizontal;
+        float: left;
+    }
+
+    .pm24sc-align-right\@s {
+        margin-top: 0;
+        margin-left: $align-margin-horizontal;
+        float: right;
+    }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-align-left\@m {
+        margin-top: 0;
+        margin-right: $align-margin-horizontal;
+        float: left;
+    }
+
+    .pm24sc-align-right\@m {
+        margin-top: 0;
+        margin-left: $align-margin-horizontal;
+        float: right;
+    }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-align-left\@l {
+        margin-top: 0;
+        float: left;
+    }
+
+    .pm24sc-align-right\@l {
+        margin-top: 0;
+        float: right;
+    }
+
+    .pm24sc-align-left,
+    .pm24sc-align-left\@s,
+    .pm24sc-align-left\@m,
+    .pm24sc-align-left\@l { margin-right: $align-margin-horizontal-l; }
+
+    .pm24sc-align-right,
+    .pm24sc-align-right\@s,
+    .pm24sc-align-right\@m,
+    .pm24sc-align-right\@l { margin-left: $align-margin-horizontal-l; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    .pm24sc-align-left\@xl {
+        margin-top: 0;
+        margin-right: $align-margin-horizontal-l;
+        float: left;
+    }
+
+    .pm24sc-align-right\@xl {
+        margin-top: 0;
+        margin-left: $align-margin-horizontal-l;
+        float: right;
+    }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-align-misc)) {@include hook-align-misc();}
+
+// @mixin hook-align-misc(){}

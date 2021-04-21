@@ -1,0 +1,371 @@
+// Name:            Width
+// Description:     Utilities for widths
+//
+// Component:       `pm24sc-child-width-*`
+//                  `pm24sc-width-*`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$width-small-width:                              150px !default;
+$width-medium-width:                             300px !default;
+$width-large-width:                              450px !default;
+$width-xlarge-width:                             600px !default;
+$width-2xlarge-width:                            750px !default;
+
+
+/* ========================================================================
+   Component: Width
+ ========================================================================== */
+
+
+/* Equal child widths
+ ========================================================================== */
+
+[class*='pm24sc-child-width'] > * {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.pm24sc-child-width-1-2 > * { width: 50%; }
+.pm24sc-child-width-1-3 > * { width: unquote('calc(100% * 1 / 3.001)'); }
+.pm24sc-child-width-1-4 > * { width: 25%; }
+.pm24sc-child-width-1-5 > * { width: 20%; }
+.pm24sc-child-width-1-6 > * { width: unquote('calc(100% * 1 / 6.001)'); }
+
+.pm24sc-child-width-auto > * { width: auto; }
+
+/*
+ * 1. Reset the `min-width`, which is set to auto by default, because
+ *    flex items won't shrink below their minimum intrinsic content size.
+ *    Using `1px` instead of `0`, so items still wrap into the next line,
+ *    if they have zero width and padding and the predecessor is 100% wide.
+ */
+
+.pm24sc-child-width-expand > :not([class*='pm24sc-width']) {
+    flex: 1;
+    /* 1 */
+    min-width: 1px;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-child-width-1-1\@s > * { width: 100%; }
+    .pm24sc-child-width-1-2\@s > * { width: 50%; }
+    .pm24sc-child-width-1-3\@s > * { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-child-width-1-4\@s > * { width: 25%; }
+    .pm24sc-child-width-1-5\@s > * { width: 20%; }
+    .pm24sc-child-width-1-6\@s > * { width: unquote('calc(100% * 1 / 6.001)'); }
+
+    .pm24sc-child-width-auto\@s > * { width: auto; }
+    .pm24sc-child-width-expand\@s > :not([class*='pm24sc-width']) {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-child-width-1-1\@m > * { width: 100%; }
+    .pm24sc-child-width-1-2\@m > * { width: 50%; }
+    .pm24sc-child-width-1-3\@m > * { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-child-width-1-4\@m > * { width: 25%; }
+    .pm24sc-child-width-1-5\@m > * { width: 20%; }
+    .pm24sc-child-width-1-6\@m > * { width: unquote('calc(100% * 1 / 6.001)'); }
+
+    .pm24sc-child-width-auto\@m > * { width: auto; }
+    .pm24sc-child-width-expand\@m > :not([class*='pm24sc-width']) {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-child-width-1-1\@l > * { width: 100%; }
+    .pm24sc-child-width-1-2\@l > * { width: 50%; }
+    .pm24sc-child-width-1-3\@l > * { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-child-width-1-4\@l > * { width: 25%; }
+    .pm24sc-child-width-1-5\@l > * { width: 20%; }
+    .pm24sc-child-width-1-6\@l > * { width: unquote('calc(100% * 1 / 6.001)'); }
+
+    .pm24sc-child-width-auto\@l > * { width: auto; }
+    .pm24sc-child-width-expand\@l > :not([class*='pm24sc-width']) {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    .pm24sc-child-width-1-1\@xl > * { width: 100%; }
+    .pm24sc-child-width-1-2\@xl > * { width: 50%; }
+    .pm24sc-child-width-1-3\@xl > * { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-child-width-1-4\@xl > * { width: 25%; }
+    .pm24sc-child-width-1-5\@xl > * { width: 20%; }
+    .pm24sc-child-width-1-6\@xl > * { width: unquote('calc(100% * 1 / 6.001)'); }
+
+    .pm24sc-child-width-auto\@xl > * { width: auto; }
+    .pm24sc-child-width-expand\@xl > :not([class*='pm24sc-width']) {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+
+/* Single Widths
+ ========================================================================== */
+
+/*
+ * 1. `max-width` is needed for the pixel-based classes
+ */
+
+[class*='pm24sc-width'] {
+    box-sizing: border-box;
+    width: 100%;
+    /* 1 */
+    max-width: 100%;
+}
+
+/* Halves */
+.pm24sc-width-1-2 { width: 50%; }
+
+/* Thirds */
+.pm24sc-width-1-3 { width: unquote('calc(100% * 1 / 3.001)'); }
+.pm24sc-width-2-3 { width: unquote('calc(100% * 2 / 3.001)'); }
+
+/* Quarters */
+.pm24sc-width-1-4 { width: 25%; }
+.pm24sc-width-3-4 { width: 75%; }
+
+/* Fifths */
+.pm24sc-width-1-5 { width: 20%; }
+.pm24sc-width-2-5 { width: 40%; }
+.pm24sc-width-3-5 { width: 60%; }
+.pm24sc-width-4-5 { width: 80%; }
+
+/* Sixths */
+.pm24sc-width-1-6 { width: unquote('calc(100% * 1 / 6.001)'); }
+.pm24sc-width-5-6 { width: unquote('calc(100% * 5 / 6.001)'); }
+
+/* Pixel */
+.pm24sc-width-small { width: $width-small-width; }
+.pm24sc-width-medium { width: $width-medium-width; }
+.pm24sc-width-large { width: $width-large-width; }
+.pm24sc-width-xlarge { width: $width-xlarge-width; }
+.pm24sc-width-2xlarge { width: $width-2xlarge-width; }
+@if ($deprecated == true) {
+.pm24sc-width-xxlarge { width: $width-2xlarge-width; }
+}
+
+/* Auto */
+.pm24sc-width-auto { width: auto; }
+
+/* Expand */
+.pm24sc-width-expand {
+    flex: 1;
+    min-width: 1px;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    /* Whole */
+    .pm24sc-width-1-1\@s { width: 100%; }
+
+    /* Halves */
+    .pm24sc-width-1-2\@s { width: 50%; }
+
+    /* Thirds */
+    .pm24sc-width-1-3\@s { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-width-2-3\@s { width: unquote('calc(100% * 2 / 3.001)'); }
+
+    /* Quarters */
+    .pm24sc-width-1-4\@s { width: 25%; }
+    .pm24sc-width-3-4\@s { width: 75%; }
+
+    /* Fifths */
+    .pm24sc-width-1-5\@s { width: 20%; }
+    .pm24sc-width-2-5\@s { width: 40%; }
+    .pm24sc-width-3-5\@s { width: 60%; }
+    .pm24sc-width-4-5\@s { width: 80%; }
+
+    /* Sixths */
+    .pm24sc-width-1-6\@s { width: unquote('calc(100% * 1 / 6.001)'); }
+    .pm24sc-width-5-6\@s { width: unquote('calc(100% * 5 / 6.001)'); }
+
+    /* Pixel */
+    .pm24sc-width-small\@s { width: $width-small-width; }
+    .pm24sc-width-medium\@s { width: $width-medium-width; }
+    .pm24sc-width-large\@s { width: $width-large-width; }
+    .pm24sc-width-xlarge\@s { width: $width-xlarge-width; }
+    .pm24sc-width-2xlarge\@s { width: $width-2xlarge-width; }
+    .pm24sc-width-xxlarge\@s { width: $width-2xlarge-width; }
+
+    /* Auto */
+    .pm24sc-width-auto\@s { width: auto; }
+
+    /* Expand */
+    .pm24sc-width-expand\@s {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    /* Whole */
+    .pm24sc-width-1-1\@m { width: 100%; }
+
+    /* Halves */
+    .pm24sc-width-1-2\@m { width: 50%; }
+
+    /* Thirds */
+    .pm24sc-width-1-3\@m { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-width-2-3\@m { width: unquote('calc(100% * 2 / 3.001)'); }
+
+    /* Quarters */
+    .pm24sc-width-1-4\@m { width: 25%; }
+    .pm24sc-width-3-4\@m { width: 75%; }
+
+    /* Fifths */
+    .pm24sc-width-1-5\@m { width: 20%; }
+    .pm24sc-width-2-5\@m { width: 40%; }
+    .pm24sc-width-3-5\@m { width: 60%; }
+    .pm24sc-width-4-5\@m { width: 80%; }
+
+    /* Sixths */
+    .pm24sc-width-1-6\@m { width: unquote('calc(100% * 1 / 6.001)'); }
+    .pm24sc-width-5-6\@m { width: unquote('calc(100% * 5 / 6.001)'); }
+
+    /* Pixel */
+    .pm24sc-width-small\@m { width: $width-small-width; }
+    .pm24sc-width-medium\@m { width: $width-medium-width; }
+    .pm24sc-width-large\@m { width: $width-large-width; }
+    .pm24sc-width-xlarge\@m { width: $width-xlarge-width; }
+    .pm24sc-width-2xlarge\@m { width: $width-2xlarge-width; }
+    .pm24sc-width-xxlarge\@m   { width: $width-2xlarge-width; }
+
+     /* Auto */
+    .pm24sc-width-auto\@m { width: auto; }
+
+    /* Expand */
+    .pm24sc-width-expand\@m {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    /* Whole */
+    .pm24sc-width-1-1\@l { width: 100%; }
+
+    /* Halves */
+    .pm24sc-width-1-2\@l { width: 50%; }
+
+    /* Thirds */
+    .pm24sc-width-1-3\@l { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-width-2-3\@l { width: unquote('calc(100% * 2 / 3.001)'); }
+
+    /* Quarters */
+    .pm24sc-width-1-4\@l { width: 25%; }
+    .pm24sc-width-3-4\@l { width: 75%; }
+
+    /* Fifths */
+    .pm24sc-width-1-5\@l { width: 20%; }
+    .pm24sc-width-2-5\@l { width: 40%; }
+    .pm24sc-width-3-5\@l { width: 60%; }
+    .pm24sc-width-4-5\@l { width: 80%; }
+
+    /* Sixths */
+    .pm24sc-width-1-6\@l { width: unquote('calc(100% * 1 / 6.001)'); }
+    .pm24sc-width-5-6\@l { width: unquote('calc(100% * 5 / 6.001)'); }
+
+    /* Pixel */
+    .pm24sc-width-small\@l { width: $width-small-width; }
+    .pm24sc-width-medium\@l { width: $width-medium-width; }
+    .pm24sc-width-large\@l { width: $width-large-width; }
+    .pm24sc-width-xlarge\@l { width: $width-xlarge-width; }
+    .pm24sc-width-2xlarge\@l { width: $width-2xlarge-width; }
+    .pm24sc-width-xxlarge\@l   { width: $width-2xlarge-width; }
+
+    /* Auto */
+    .pm24sc-width-auto\@l { width: auto; }
+
+    /* Expand */
+    .pm24sc-width-expand\@l {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    /* Whole */
+    .pm24sc-width-1-1\@xl { width: 100%; }
+
+    /* Halves */
+    .pm24sc-width-1-2\@xl { width: 50%; }
+
+    /* Thirds */
+    .pm24sc-width-1-3\@xl { width: unquote('calc(100% * 1 / 3.001)'); }
+    .pm24sc-width-2-3\@xl { width: unquote('calc(100% * 2 / 3.001)'); }
+
+    /* Quarters */
+    .pm24sc-width-1-4\@xl { width: 25%; }
+    .pm24sc-width-3-4\@xl { width: 75%; }
+
+    /* Fifths */
+    .pm24sc-width-1-5\@xl { width: 20%; }
+    .pm24sc-width-2-5\@xl { width: 40%; }
+    .pm24sc-width-3-5\@xl { width: 60%; }
+    .pm24sc-width-4-5\@xl { width: 80%; }
+
+    /* Sixths */
+    .pm24sc-width-1-6\@xl { width: unquote('calc(100% * 1 / 6.001)'); }
+    .pm24sc-width-5-6\@xl { width: unquote('calc(100% * 5 / 6.001)'); }
+
+    /* Pixel */
+    .pm24sc-width-small\@xl { width: $width-small-width; }
+    .pm24sc-width-medium\@xl { width: $width-medium-width; }
+    .pm24sc-width-large\@xl { width: $width-large-width; }
+    .pm24sc-width-xlarge\@xl { width: $width-xlarge-width; }
+    .pm24sc-width-2xlarge\@xl { width: $width-2xlarge-width; }
+    .pm24sc-width-xxlarge\@xl   { width: $width-2xlarge-width; }
+
+    /* Auto */
+    .pm24sc-width-auto\@xl { width: auto; }
+
+    /* Expand */
+    .pm24sc-width-expand\@xl {
+        flex: 1;
+        min-width: 1px;
+    }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-width-misc)) {@include hook-width-misc();}
+
+// @mixin hook-width-misc(){}

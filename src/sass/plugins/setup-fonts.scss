@@ -1,0 +1,13 @@
+@font-face {
+	font-family: "Material Design Icons";
+	font-style: normal;
+	font-weight: normal;
+	font-display: fallback;
+	src: url("../../assets/fonts/materialdesignicons-webfont.eot"); // For IE6-8
+	src: local("Material Design Icons"), local("MaterialIcons-Regular"),
+		url("../../assets/fonts/materialdesignicons-webfont.woff2") format("woff2"),
+		url("../../assets/fonts/materialdesignicons-webfont.woff") format("woff"),
+		url("../../assets/fonts/materialdesignicons-webfont.ttf") format("truetype"),
+		url("../../assets/fonts/materialdesignicons-webfont.svg") format("svg");
+
+}

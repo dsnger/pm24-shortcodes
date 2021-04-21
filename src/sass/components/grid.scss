@@ -1,0 +1,400 @@
+// Name:            Grid
+// Description:     Component to create responsive, fluid and nestable grids
+//
+// Component:       `pm24sc-grid`
+//
+// Modifiers:       `pm24sc-grid-small`
+//                  `pm24sc-grid-medium`
+//                  `pm24sc-grid-large`
+//                  `pm24sc-grid-collapse`
+//                  `pm24sc-grid-divider`
+//                  `pm24sc-grid-match`
+//                  `pm24sc-grid-stack`
+//                  `pm24sc-grid-margin`
+//                  `pm24sc-grid-margin-small`
+//                  `pm24sc-grid-margin-medium`
+//                  `pm24sc-grid-margin-large`
+//                  `pm24sc-grid-margin-collapse`
+//
+// Sub-modifier:    `pm24sc-grid-item-match`
+//
+// States:          `pm24sc-first-column`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$grid-gutter-horizontal:                         $global-gutter !default;
+$grid-gutter-vertical:                           $grid-gutter-horizontal !default;
+$grid-gutter-horizontal-l:                       $global-medium-gutter !default;
+$grid-gutter-vertical-l:                         $grid-gutter-horizontal-l !default;
+
+$grid-small-gutter-horizontal:                   $global-small-gutter !default;
+$grid-small-gutter-vertical:                     $grid-small-gutter-horizontal !default;
+
+$grid-medium-gutter-horizontal:                  $global-gutter !default;
+$grid-medium-gutter-vertical:                    $grid-medium-gutter-horizontal !default;
+
+$grid-large-gutter-horizontal:                   $global-medium-gutter !default;
+$grid-large-gutter-vertical:                     $grid-large-gutter-horizontal !default;
+$grid-large-gutter-horizontal-l:                 $global-large-gutter !default;
+$grid-large-gutter-vertical-l:                   $grid-large-gutter-horizontal-l !default;
+
+$grid-divider-border-width:                      $global-border-width !default;
+$grid-divider-border:                            $global-border !default;
+
+
+/* ========================================================================
+   Component: Grid
+ ========================================================================== */
+
+/*
+ * 1. Allow cells to wrap into the next line
+ * 2. Reset list
+ */
+
+.pm24sc-grid {
+    display: flex;
+    /* 1 */
+    flex-wrap: wrap;
+    /* 2 */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*
+ * Grid cell
+ * Note: Space is allocated solely based on content dimensions, but shrinks: 0 1 auto
+ * Reset margin for e.g. paragraphs
+ */
+
+.pm24sc-grid > * { margin: 0; }
+
+/*
+ * Remove margin from the last-child
+ */
+
+.pm24sc-grid > * > :last-child { margin-bottom: 0; }
+
+
+/* Gutter
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+/* Horizontal */
+.pm24sc-grid { margin-left: (-$grid-gutter-horizontal); }
+.pm24sc-grid > * { padding-left: $grid-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid + .pm24sc-grid,
+.pm24sc-grid > .pm24sc-grid-margin,
+* + .pm24sc-grid-margin { margin-top: $grid-gutter-vertical; }
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    /* Horizontal */
+    .pm24sc-grid { margin-left: (-$grid-gutter-horizontal-l); }
+    .pm24sc-grid > * { padding-left: $grid-gutter-horizontal-l; }
+
+    /* Vertical */
+    .pm24sc-grid + .pm24sc-grid,
+    .pm24sc-grid > .pm24sc-grid-margin,
+    * + .pm24sc-grid-margin { margin-top: $grid-gutter-vertical-l; }
+
+}
+
+/*
+ * Small
+ */
+
+/* Horizontal */
+.pm24sc-grid-small,
+.pm24sc-grid-column-small { margin-left: (-$grid-small-gutter-horizontal); }
+.pm24sc-grid-small > *,
+.pm24sc-grid-column-small > *  { padding-left: $grid-small-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid + .pm24sc-grid-small,
+.pm24sc-grid + .pm24sc-grid-row-small,
+.pm24sc-grid-small > .pm24sc-grid-margin,
+.pm24sc-grid-row-small > .pm24sc-grid-margin,
+* + .pm24sc-grid-margin-small { margin-top: $grid-small-gutter-vertical; }
+
+/*
+ * Medium
+ */
+
+/* Horizontal */
+.pm24sc-grid-medium,
+.pm24sc-grid-column-medium { margin-left: (-$grid-medium-gutter-horizontal); }
+.pm24sc-grid-medium > *,
+.pm24sc-grid-column-medium > * { padding-left: $grid-medium-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid + .pm24sc-grid-medium,
+.pm24sc-grid + .pm24sc-grid-row-medium,
+.pm24sc-grid-medium > .pm24sc-grid-margin,
+.pm24sc-grid-row-medium > .pm24sc-grid-margin,
+* + .pm24sc-grid-margin-medium { margin-top: $grid-medium-gutter-vertical; }
+
+/*
+ * Large
+ */
+
+/* Horizontal */
+.pm24sc-grid-large,
+.pm24sc-grid-column-large { margin-left: (-$grid-large-gutter-horizontal); }
+.pm24sc-grid-large > *,
+.pm24sc-grid-column-large > * { padding-left: $grid-large-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid + .pm24sc-grid-large,
+.pm24sc-grid + .pm24sc-grid-row-large,
+.pm24sc-grid-large > .pm24sc-grid-margin,
+.pm24sc-grid-row-large > .pm24sc-grid-margin,
+* + .pm24sc-grid-margin-large { margin-top: $grid-large-gutter-vertical; }
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    /* Horizontal */
+    .pm24sc-grid-large,
+    .pm24sc-grid-column-large { margin-left: (-$grid-large-gutter-horizontal-l); }
+    .pm24sc-grid-large > *,
+    .pm24sc-grid-column-large > * { padding-left: $grid-large-gutter-horizontal-l; }
+
+    /* Vertical */
+    .pm24sc-grid + .pm24sc-grid-large,
+    .pm24sc-grid + .pm24sc-grid-row-large,
+    .pm24sc-grid-large > .pm24sc-grid-margin,
+    .pm24sc-grid-row-large > .pm24sc-grid-margin,
+    * + .pm24sc-grid-margin-large { margin-top: $grid-large-gutter-vertical-l; }
+
+}
+
+/*
+ * Collapse
+ */
+
+/* Horizontal */
+.pm24sc-grid-collapse,
+.pm24sc-grid-column-collapse { margin-left: 0; }
+.pm24sc-grid-collapse > *,
+.pm24sc-grid-column-collapse > * { padding-left: 0; }
+
+/* Vertical */
+.pm24sc-grid + .pm24sc-grid-collapse,
+.pm24sc-grid + .pm24sc-grid-row-collapse,
+.pm24sc-grid-collapse > .pm24sc-grid-margin,
+.pm24sc-grid-row-collapse > .pm24sc-grid-margin { margin-top: 0; }
+
+
+/* Divider
+ ========================================================================== */
+
+.pm24sc-grid-divider > * { position: relative; }
+
+.pm24sc-grid-divider > :not(.pm24sc-first-column)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-left: $grid-divider-border-width solid $grid-divider-border;
+}
+
+/* Vertical */
+.pm24sc-grid-divider.pm24sc-grid-stack > .pm24sc-grid-margin::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: $grid-divider-border-width solid $grid-divider-border;
+}
+
+/*
+ * Default
+ */
+
+/* Horizontal */
+.pm24sc-grid-divider { margin-left: -($grid-gutter-horizontal * 2); }
+.pm24sc-grid-divider > * { padding-left: ($grid-gutter-horizontal * 2); }
+
+.pm24sc-grid-divider > :not(.pm24sc-first-column)::before { left: $grid-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid-divider.pm24sc-grid-stack > .pm24sc-grid-margin { margin-top: ($grid-gutter-vertical * 2); }
+
+.pm24sc-grid-divider.pm24sc-grid-stack > .pm24sc-grid-margin::before {
+    top: (-$grid-gutter-vertical);
+    left: ($grid-gutter-horizontal * 2);
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    /* Horizontal */
+    .pm24sc-grid-divider { margin-left: -($grid-gutter-horizontal-l * 2); }
+    .pm24sc-grid-divider > * { padding-left: ($grid-gutter-horizontal-l * 2); }
+
+    .pm24sc-grid-divider > :not(.pm24sc-first-column)::before { left: $grid-gutter-horizontal-l; }
+
+    /* Vertical */
+    .pm24sc-grid-divider.pm24sc-grid-stack > .pm24sc-grid-margin { margin-top: ($grid-gutter-vertical-l * 2); }
+
+    .pm24sc-grid-divider.pm24sc-grid-stack > .pm24sc-grid-margin::before {
+        top: (-$grid-gutter-vertical-l);
+        left: ($grid-gutter-horizontal-l * 2);
+    }
+
+}
+
+/*
+ * Small
+ */
+
+/* Horizontal */
+.pm24sc-grid-divider.pm24sc-grid-small,
+.pm24sc-grid-divider.pm24sc-grid-column-small { margin-left: -($grid-small-gutter-horizontal * 2); }
+.pm24sc-grid-divider.pm24sc-grid-small > *,
+.pm24sc-grid-divider.pm24sc-grid-column-small > * { padding-left: ($grid-small-gutter-horizontal * 2); }
+
+.pm24sc-grid-divider.pm24sc-grid-small > :not(.pm24sc-first-column)::before,
+.pm24sc-grid-divider.pm24sc-grid-column-small > :not(.pm24sc-first-column)::before { left: $grid-small-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid-divider.pm24sc-grid-small.pm24sc-grid-stack > .pm24sc-grid-margin,
+.pm24sc-grid-divider.pm24sc-grid-row-small.pm24sc-grid-stack > .pm24sc-grid-margin { margin-top: ($grid-small-gutter-vertical * 2); }
+
+.pm24sc-grid-divider.pm24sc-grid-small.pm24sc-grid-stack > .pm24sc-grid-margin::before {
+    top: (-$grid-small-gutter-vertical);
+    left: ($grid-small-gutter-horizontal * 2);
+}
+
+.pm24sc-grid-divider.pm24sc-grid-row-small.pm24sc-grid-stack > .pm24sc-grid-margin::before { top: (-$grid-small-gutter-vertical); }
+.pm24sc-grid-divider.pm24sc-grid-column-small.pm24sc-grid-stack > .pm24sc-grid-margin::before { left: ($grid-small-gutter-horizontal * 2); }
+
+/*
+ * Medium
+ */
+
+/* Horizontal */
+.pm24sc-grid-divider.pm24sc-grid-medium,
+.pm24sc-grid-divider.pm24sc-grid-column-medium { margin-left: -($grid-medium-gutter-horizontal * 2); }
+.pm24sc-grid-divider.pm24sc-grid-medium > *,
+.pm24sc-grid-divider.pm24sc-grid-column-medium > * { padding-left: ($grid-medium-gutter-horizontal * 2); }
+
+.pm24sc-grid-divider.pm24sc-grid-medium > :not(.pm24sc-first-column)::before,
+.pm24sc-grid-divider.pm24sc-grid-column-medium > :not(.pm24sc-first-column)::before { left: $grid-medium-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid-divider.pm24sc-grid-medium.pm24sc-grid-stack > .pm24sc-grid-margin,
+.pm24sc-grid-divider.pm24sc-grid-row-medium.pm24sc-grid-stack > .pm24sc-grid-margin { margin-top: ($grid-medium-gutter-vertical * 2); }
+
+.pm24sc-grid-divider.pm24sc-grid-medium.pm24sc-grid-stack > .pm24sc-grid-margin::before {
+    top: (-$grid-medium-gutter-vertical);
+    left: ($grid-medium-gutter-horizontal * 2);
+}
+
+.pm24sc-grid-divider.pm24sc-grid-row-medium.pm24sc-grid-stack > .pm24sc-grid-margin::before { top: (-$grid-medium-gutter-vertical); }
+.pm24sc-grid-divider.pm24sc-grid-column-medium.pm24sc-grid-stack > .pm24sc-grid-margin::before { left: ($grid-medium-gutter-horizontal * 2); }
+
+/*
+ * Large
+ */
+
+/* Horizontal */
+.pm24sc-grid-divider.pm24sc-grid-large,
+.pm24sc-grid-divider.pm24sc-grid-column-large { margin-left: -($grid-large-gutter-horizontal * 2); }
+.pm24sc-grid-divider.pm24sc-grid-large > *,
+.pm24sc-grid-divider.pm24sc-grid-column-large > * { padding-left: ($grid-large-gutter-horizontal * 2); }
+
+.pm24sc-grid-divider.pm24sc-grid-large > :not(.pm24sc-first-column)::before,
+.pm24sc-grid-divider.pm24sc-grid-column-large > :not(.pm24sc-first-column)::before { left: $grid-large-gutter-horizontal; }
+
+/* Vertical */
+.pm24sc-grid-divider.pm24sc-grid-large.pm24sc-grid-stack > .pm24sc-grid-margin,
+.pm24sc-grid-divider.pm24sc-grid-row-large.pm24sc-grid-stack > .pm24sc-grid-margin { margin-top: ($grid-large-gutter-vertical * 2); }
+
+.pm24sc-grid-divider.pm24sc-grid-large.pm24sc-grid-stack > .pm24sc-grid-margin::before {
+    top: (-$grid-large-gutter-vertical);
+    left: ($grid-large-gutter-horizontal * 2);
+}
+
+.pm24sc-grid-divider.pm24sc-grid-row-large.pm24sc-grid-stack > .pm24sc-grid-margin::before { top: (-$grid-large-gutter-vertical); }
+.pm24sc-grid-divider.pm24sc-grid-column-large.pm24sc-grid-stack > .pm24sc-grid-margin::before { left: ($grid-large-gutter-horizontal * 2); }
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    /* Horizontal */
+    .pm24sc-grid-divider.pm24sc-grid-large,
+    .pm24sc-grid-divider.pm24sc-grid-column-large { margin-left: -($grid-large-gutter-horizontal-l * 2); }
+    .pm24sc-grid-divider.pm24sc-grid-large > *,
+    .pm24sc-grid-divider.pm24sc-grid-column-large > * { padding-left: ($grid-large-gutter-horizontal-l * 2); }
+
+    .pm24sc-grid-divider.pm24sc-grid-large > :not(.pm24sc-first-column)::before,
+    .pm24sc-grid-divider.pm24sc-grid-column-large > :not(.pm24sc-first-column)::before { left: $grid-large-gutter-horizontal-l; }
+
+    /* Vertical */
+    .pm24sc-grid-divider.pm24sc-grid-large.pm24sc-grid-stack > .pm24sc-grid-margin,
+    .pm24sc-grid-divider.pm24sc-grid-row-large.pm24sc-grid-stack > .pm24sc-grid-margin { margin-top: ($grid-large-gutter-vertical-l * 2); }
+
+    .pm24sc-grid-divider.pm24sc-grid-large.pm24sc-grid-stack > .pm24sc-grid-margin::before {
+        top: (-$grid-large-gutter-vertical-l);
+        left: ($grid-large-gutter-horizontal-l * 2);
+    }
+
+    .pm24sc-grid-divider.pm24sc-grid-row-large.pm24sc-grid-stack > .pm24sc-grid-margin::before { top: (-$grid-large-gutter-vertical-l); }
+    .pm24sc-grid-divider.pm24sc-grid-column-large.pm24sc-grid-stack > .pm24sc-grid-margin::before { left: ($grid-large-gutter-horizontal-l * 2); }
+
+}
+
+
+/* Match child of a grid cell
+ ========================================================================== */
+
+/*
+ * Behave like a block element
+ * 1. Wrap into the next line
+ * 2. Take the full width, at least 100%. Only if no class from the Width component is set.
+ * 3. Expand width even if larger than 100%, e.g. because of negative margin (Needed for nested grids)
+ */
+
+.pm24sc-grid-match > *,
+.pm24sc-grid-item-match {
+    display: flex;
+    /* 1 */
+    flex-wrap: wrap;
+}
+
+.pm24sc-grid-match > * > :not([class*='pm24sc-width']),
+.pm24sc-grid-item-match > :not([class*='pm24sc-width']) {
+    /* 2 */
+    box-sizing: border-box;
+    width: 100%;
+    /* 3 */
+    flex: auto;
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-grid-misc)) {@include hook-grid-misc();}
+
+// @mixin hook-grid-misc(){}
+
+
+// Inverse
+// ========================================================================
+
+$inverse-grid-divider-border:                   $inverse-global-border !default;
+
+

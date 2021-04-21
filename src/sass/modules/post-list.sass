@@ -1,0 +1,144 @@
+//version 1.0.1
+  
+.pm24-shortcodes__postlist
+
+  .pm24sc-card-media-top
+    overflow: hidden
+
+    img
+      transition: all .4s ease-in-out
+
+  article.pm24sc-card
+    // border: 2px solid transparent
+    transition: all .2s ease
+    &:hover
+      // border: 2px solid $global-primary-color
+      transform: scale(1.025)
+      box-shadow: $global-large-box-shadow
+
+    .pm24sc-card-media-top img:hover
+      transform: scale(1.05)
+
+
+  .pm24sc-label
+    background: $global-secondary-background
+    font-size: 14px
+    top: $global-small-gutter
+    right: 0
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+    padding: $padding-small-padding/2 $padding-small-padding
+  
+  .pm24-shortcodes__medialink
+    width: 100%
+    height: 100%
+
+  .pm24-shortcodes__postimage
+    width: 100%
+    max-width: 100%
+    height: auto
+    object-fit: contain
+
+  // .pm24sc-card-body
+  //   padding-bottom: $global-small-gutter
+
+  .pm24sc-card-title
+    font-weight: 500
+    font-size: 20px
+    line-height: 1.4em
+    padding-bottom: $global-small-gutter/2
+    margin: 0
+
+  .pm24sc-card-footer
+    .pm24sc-button
+      width: 100%!important
+
+    .pm24sc-button-success
+      margin-bottom: $global-small-gutter/2
+
+    .pm24sc-button-success + .pm24sc-button-success
+      margin-bottom: 0
+
+    .pm24sc-button__register,
+    .pm24sc-button__file,
+    span > .pm24sc-button__unlock
+      margin-top: 20px
+
+    .pm24sc-button__morelink + .pm24sc-button__register,
+    .pm24sc-button__morelink + .pm24sc-button__file,
+    .pm24sc-button__morelink + span > .pm24sc-button__unlock
+      margin-top: 0
+
+  //filter
+  .pm24sc-subnav.pm24sc-subnav-pill
+    margin: 0!important
+    padding: 0
+
+    li
+      margin: 0
+      padding: 0
+
+    & >.pm24sc-active>a
+      color: white!important
+
+  .pm24sc-article-meta
+    font-size: 0.65rem
+    color: $global-primary-color
+    text-transform: uppercase
+    padding: 0 0 $global-small-gutter/2 0
+    margin: 0
+
+  
+.pm24-shortcodes__filter
+
+  ul
+    margin: 0!important
+
+  ul>li
+    margin: 0
+    margin-left: 0
+    padding: 0
+
+
+  .pm24_list_filter
+    min-width: 190px
+    width: 100%
+    font-weight: bold
+
+    .pm24sc-icon
+      position: absolute
+      right: 6px
+      top: 20px
+      transform: translateY(-50%)
+
+    .pm24_filter_text
+      font-size: .8rem
+      line-height: 1.4
+      display: block
+      margin-bottom: 10px
+      color: #aaa
+      font-weight: 300
+  
+
+    &.pm24sc-open
+      .pm24sc-icon
+        transform: translateY(-59%) scaleY(-1)
+
+    
+  .pm24_list_filter_reset.pm24sc-button-link
+    color: $global-primary-background
+    font-size: 0.875rem
+    padding: 0 20px 0 0
+
+
+  .pm24sc-nav.pm24sc-dropdown-nav
+    padding-left: 0
+    list-style: none!important
+
+    & > li a
+      color: $global-primary-background
+      &:hover 
+        color: $global-color
+
+    & > li.pm24sc-active a
+      color: $global-color

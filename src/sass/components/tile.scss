@@ -1,0 +1,213 @@
+// Name:            Tile
+// Description:     Component to create tiled boxes
+//
+// Component:       `pm24sc-tile`
+//
+// Modifiers:       `pm24sc-tile-xsmall`
+//                  `pm24sc-tile-small`
+//                  `pm24sc-tile-large`
+//                  `pm24sc-tile-xlarge`
+//                  `pm24sc-tile-default`
+//                  `pm24sc-tile-muted`
+//                  `pm24sc-tile-primary`
+//                  `pm24sc-tile-secondary`
+//
+// States:          `pm24sc-preserve-color`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$tile-padding-horizontal:                       15px !default;
+$tile-padding-horizontal-s:                     $global-gutter !default;
+$tile-padding-horizontal-m:                     $global-medium-gutter !default;
+$tile-padding-vertical:                         $global-medium-margin !default;
+$tile-padding-vertical-m:                       $global-large-margin !default;
+
+$tile-xsmall-padding-vertical:                  $global-margin !default;
+
+$tile-small-padding-vertical:                   $global-medium-margin !default;
+
+$tile-large-padding-vertical:                   $global-large-margin !default;
+$tile-large-padding-vertical-m:                 $global-xlarge-margin !default;
+
+$tile-xlarge-padding-vertical:                  $global-xlarge-margin !default;
+$tile-xlarge-padding-vertical-m:                ($global-large-margin + $global-xlarge-margin) !default;
+
+$tile-default-background:                       $global-background !default;
+
+$tile-muted-background:                         $global-muted-background !default;
+
+$tile-primary-background:                       $global-primary-background !default;
+$tile-primary-color-mode:                       light !default;
+
+$tile-secondary-background:                     $global-secondary-background !default;
+$tile-secondary-color-mode:                     light !default;
+
+
+/* ========================================================================
+   Component: Tile
+ ========================================================================== */
+
+.pm24sc-tile {
+    display: flow-root;
+    position: relative;
+    box-sizing: border-box;
+    padding-left: $tile-padding-horizontal;
+    padding-right: $tile-padding-horizontal;
+    padding-top: $tile-padding-vertical;
+    padding-bottom: $tile-padding-vertical;
+    @if(mixin-exists(hook-tile)) {@include hook-tile();}
+}
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-tile {
+        padding-left: $tile-padding-horizontal-s;
+        padding-right: $tile-padding-horizontal-s;
+    }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-tile {
+        padding-left: $tile-padding-horizontal-m;
+        padding-right: $tile-padding-horizontal-m;
+        padding-top: $tile-padding-vertical-m;
+        padding-bottom: $tile-padding-vertical-m;
+    }
+
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.pm24sc-tile > :last-child { margin-bottom: 0; }
+
+
+/* Size modifiers
+ ========================================================================== */
+
+/*
+ * XSmall
+ */
+
+.pm24sc-tile-xsmall {
+    padding-top: $tile-xsmall-padding-vertical;
+    padding-bottom: $tile-xsmall-padding-vertical;
+}
+
+/*
+ * Small
+ */
+
+.pm24sc-tile-small {
+    padding-top: $tile-small-padding-vertical;
+    padding-bottom: $tile-small-padding-vertical;
+}
+
+/*
+ * Large
+ */
+
+.pm24sc-tile-large {
+    padding-top: $tile-large-padding-vertical;
+    padding-bottom: $tile-large-padding-vertical;
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-tile-large {
+        padding-top: $tile-large-padding-vertical-m;
+        padding-bottom: $tile-large-padding-vertical-m;
+    }
+
+}
+
+
+/*
+ * XLarge
+ */
+
+.pm24sc-tile-xlarge {
+    padding-top: $tile-xlarge-padding-vertical;
+    padding-bottom: $tile-xlarge-padding-vertical;
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-tile-xlarge {
+        padding-top: $tile-xlarge-padding-vertical-m;
+        padding-bottom: $tile-xlarge-padding-vertical-m;
+    }
+
+}
+
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Default
+ */
+
+.pm24sc-tile-default {
+    background: $tile-default-background;
+    @if(mixin-exists(hook-tile-default)) {@include hook-tile-default();}
+}
+
+/*
+ * Muted
+ */
+
+.pm24sc-tile-muted {
+    background: $tile-muted-background;
+    @if(mixin-exists(hook-tile-muted)) {@include hook-tile-muted();}
+}
+
+/*
+ * Primary
+ */
+
+.pm24sc-tile-primary {
+    background: $tile-primary-background;
+    @if(mixin-exists(hook-tile-primary)) {@include hook-tile-primary();}
+}
+
+// Color Mode
+@if ( $tile-primary-color-mode == light ) { .pm24sc-tile-primary:not(.pm24sc-preserve-color) { @extend .pm24sc-light !optional;} }
+@if ( $tile-primary-color-mode == dark ) { .pm24sc-tile-primary:not(.pm24sc-preserve-color) { @extend .pm24sc-dark !optional;} }
+
+/*
+ * Secondary
+ */
+
+.pm24sc-tile-secondary {
+    background: $tile-secondary-background;
+    @if(mixin-exists(hook-tile-secondary)) {@include hook-tile-secondary();}
+}
+
+// Color Mode
+@if ( $tile-secondary-color-mode == light ) { .pm24sc-tile-secondary:not(.pm24sc-preserve-color) { @extend .pm24sc-light !optional;} }
+@if ( $tile-secondary-color-mode == dark ) { .pm24sc-tile-secondary:not(.pm24sc-preserve-color) { @extend .pm24sc-dark !optional;} }
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-tile-misc)) {@include hook-tile-misc();}
+
+// @mixin hook-tile(){}
+// @mixin hook-tile-default(){}
+// @mixin hook-tile-muted(){}
+// @mixin hook-tile-primary(){}
+// @mixin hook-tile-secondary(){}
+// @mixin hook-tile-misc(){}

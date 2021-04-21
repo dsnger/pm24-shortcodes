@@ -1,0 +1,138 @@
+// Name:            Column
+// Description:     Utilities for text columns
+//
+// Component:       `pm24sc-column-*`
+//
+// Sub-objects:     `pm24sc-column-span`
+//
+// Modifiers:       `pm24sc-column-divider`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$column-gutter:                                  $global-gutter !default;
+$column-gutter-l:                                $global-medium-gutter !default;
+
+$column-divider-rule-color:                      $global-border !default;
+$column-divider-rule-width:                      1px !default;
+
+
+/* ========================================================================
+   Component: Column
+ ========================================================================== */
+
+[class*='pm24sc-column-'] { column-gap: $column-gutter; }
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    [class*='pm24sc-column-'] { column-gap: $column-gutter-l; }
+
+}
+
+/*
+ * Fix image 1px line wrapping into the next column in Chrome
+ */
+
+[class*='pm24sc-column-'] img { transform: translate3d(0,0,0); }
+
+
+/* Divider
+ ========================================================================== */
+
+/*
+ * 1. Double the column gap
+ */
+
+.pm24sc-column-divider {
+    column-rule: $column-divider-rule-width solid $column-divider-rule-color;
+    /* 1 */
+    column-gap: ($column-gutter * 2);
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-column-divider {
+        column-gap: ($column-gutter-l * 2);
+    }
+
+}
+
+
+/* Width modifiers
+ ========================================================================== */
+
+.pm24sc-column-1-2 { column-count: 2;}
+.pm24sc-column-1-3 { column-count: 3; }
+.pm24sc-column-1-4 { column-count: 4; }
+.pm24sc-column-1-5 { column-count: 5; }
+.pm24sc-column-1-6 { column-count: 6; }
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-column-1-2\@s { column-count: 2; }
+    .pm24sc-column-1-3\@s { column-count: 3; }
+    .pm24sc-column-1-4\@s { column-count: 4; }
+    .pm24sc-column-1-5\@s { column-count: 5; }
+    .pm24sc-column-1-6\@s { column-count: 6; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-column-1-2\@m { column-count: 2; }
+    .pm24sc-column-1-3\@m { column-count: 3; }
+    .pm24sc-column-1-4\@m { column-count: 4; }
+    .pm24sc-column-1-5\@m { column-count: 5; }
+    .pm24sc-column-1-6\@m { column-count: 6; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-column-1-2\@l { column-count: 2; }
+    .pm24sc-column-1-3\@l { column-count: 3; }
+    .pm24sc-column-1-4\@l { column-count: 4; }
+    .pm24sc-column-1-5\@l { column-count: 5; }
+    .pm24sc-column-1-6\@l { column-count: 6; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    .pm24sc-column-1-2\@xl { column-count: 2; }
+    .pm24sc-column-1-3\@xl { column-count: 3; }
+    .pm24sc-column-1-4\@xl { column-count: 4; }
+    .pm24sc-column-1-5\@xl { column-count: 5; }
+    .pm24sc-column-1-6\@xl { column-count: 6; }
+
+}
+
+/* Make element span across all columns
+ * Does not work in Firefox yet
+ ========================================================================== */
+
+.pm24sc-column-span { column-span: all; }
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-column-misc)) {@include hook-column-misc();}
+
+// @mixin hook-column-misc(){}
+
+
+// Inverse
+// ========================================================================
+
+$inverse-column-divider-rule-color:                     $inverse-global-border !default;
+

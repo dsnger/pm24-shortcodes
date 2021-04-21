@@ -1,0 +1,185 @@
+// Name:            Container
+// Description:     Component to align and center your site and grid content
+//
+// Component:       `pm24sc-container`
+//
+// Modifier:        `pm24sc-container-small`
+//                  `pm24sc-container-large`
+//                  `pm24sc-container-expand`
+//                  `pm24sc-container-expand-left`
+//                  `pm24sc-container-expand-right`
+//                  `pm24sc-container-item-padding-remove-left`
+//                  `pm24sc-container-item-padding-remove-right`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$container-max-width:                    1200px !default;
+$container-xsmall-max-width:             750px !default;
+$container-small-max-width:              900px !default;
+$container-large-max-width:              1400px !default;
+$container-xlarge-max-width:             1600px !default;
+
+$container-padding-horizontal:           15px !default;
+$container-padding-horizontal-s:         $global-gutter !default;
+$container-padding-horizontal-m:         $global-medium-gutter !default;
+
+
+/* ========================================================================
+   Component: Container
+ ========================================================================== */
+
+/*
+ * 1. Box sizing has to be `content-box` so the max-width is always the same and
+ *    unaffected by the padding on different breakpoints. It's important for the size modifiers.
+ */
+
+.pm24sc-container {
+    display: flow-root;
+    /* 1 */
+    box-sizing: content-box;
+    max-width: $container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $container-padding-horizontal;
+    padding-right: $container-padding-horizontal;
+}
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-container {
+        padding-left: $container-padding-horizontal-s;
+        padding-right: $container-padding-horizontal-s;
+    }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-container {
+        padding-left: $container-padding-horizontal-m;
+        padding-right: $container-padding-horizontal-m;
+    }
+
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.pm24sc-container > :last-child { margin-bottom: 0; }
+
+/*
+ * Remove padding from nested containers
+ */
+
+.pm24sc-container .pm24sc-container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* Size modifier
+ ========================================================================== */
+
+.pm24sc-container-xsmall { max-width: $container-xsmall-max-width; }
+
+.pm24sc-container-small { max-width: $container-small-max-width; }
+
+.pm24sc-container-large { max-width: $container-large-max-width; }
+
+.pm24sc-container-xlarge { max-width: $container-xlarge-max-width; }
+
+.pm24sc-container-expand { max-width: none; }
+
+
+/* Expand modifier
+ ========================================================================== */
+
+/*
+ * Expand one side only
+ */
+
+.pm24sc-container-expand-left { margin-left: 0; }
+.pm24sc-container-expand-right { margin-right: 0; }
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-container-expand-left.pm24sc-container-xsmall,
+    .pm24sc-container-expand-right.pm24sc-container-xsmall { max-width: unquote('calc(50% + (#{$container-xsmall-max-width} / 2) - #{$container-padding-horizontal-s})'); }
+
+    .pm24sc-container-expand-left.pm24sc-container-small,
+    .pm24sc-container-expand-right.pm24sc-container-small { max-width: unquote('calc(50% + (#{$container-small-max-width} / 2) - #{$container-padding-horizontal-s})'); }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-container-expand-left,
+    .pm24sc-container-expand-right { max-width: unquote('calc(50% + (#{$container-max-width} / 2) - #{$container-padding-horizontal-m})'); }
+
+    .pm24sc-container-expand-left.pm24sc-container-xsmall,
+    .pm24sc-container-expand-right.pm24sc-container-xsmall { max-width: unquote('calc(50% + (#{$container-xsmall-max-width} / 2) - #{$container-padding-horizontal-m})'); }
+
+    .pm24sc-container-expand-left.pm24sc-container-small,
+    .pm24sc-container-expand-right.pm24sc-container-small { max-width: unquote('calc(50% + (#{$container-small-max-width} / 2) - #{$container-padding-horizontal-m})'); }
+
+    .pm24sc-container-expand-left.pm24sc-container-large,
+    .pm24sc-container-expand-right.pm24sc-container-large { max-width: unquote('calc(50% + (#{$container-large-max-width} / 2) - #{$container-padding-horizontal-m})'); }
+
+    .pm24sc-container-expand-left.pm24sc-container-xlarge,
+    .pm24sc-container-expand-right.pm24sc-container-xlarge { max-width: unquote('calc(50% + (#{$container-xlarge-max-width} / 2) - #{$container-padding-horizontal-m})'); }
+
+}
+
+
+/* Item
+ ========================================================================== */
+
+/*
+ * Utility classes to reset container padding on the left or right side
+ * Note: It has to be negative margin on the item, because it's specific to the item.
+ */
+
+.pm24sc-container-item-padding-remove-left,
+.pm24sc-container-item-padding-remove-right { width: unquote('calc(100% + #{$container-padding-horizontal})') }
+
+.pm24sc-container-item-padding-remove-left { margin-left: (-$container-padding-horizontal); }
+.pm24sc-container-item-padding-remove-right { margin-right: (-$container-padding-horizontal); }
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-container-item-padding-remove-left,
+    .pm24sc-container-item-padding-remove-right { width: unquote('calc(100% + #{$container-padding-horizontal-s})') }
+
+    .pm24sc-container-item-padding-remove-left { margin-left: (-$container-padding-horizontal-s); }
+    .pm24sc-container-item-padding-remove-right { margin-right: (-$container-padding-horizontal-s); }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-container-item-padding-remove-left,
+    .pm24sc-container-item-padding-remove-right { width: unquote('calc(100% + #{$container-padding-horizontal-m})') }
+
+    .pm24sc-container-item-padding-remove-left { margin-left: (-$container-padding-horizontal-m); }
+    .pm24sc-container-item-padding-remove-right { margin-right: (-$container-padding-horizontal-m); }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-container-misc)) {@include hook-container-misc();}
+
+// @mixin hook-container-misc(){}

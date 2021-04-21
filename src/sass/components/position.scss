@@ -1,0 +1,270 @@
+// Name:            Position
+// Description:     Utilities to position content
+//
+// Component:       `pm24sc-position-absolute`
+//                  `pm24sc-position-relative`
+//                  `pm24sc-position-z-index`
+//                  `pm24sc-position-top`
+//                  `pm24sc-position-bottom`
+//                  `pm24sc-position-left`
+//                  `pm24sc-position-right`
+//                  `pm24sc-position-top-left`
+//                  `pm24sc-position-top-center`
+//                  `pm24sc-position-top-right`
+//                  `pm24sc-position-bottom-left`
+//                  `pm24sc-position-bottom-center`
+//                  `pm24sc-position-bottom-right`
+//                  `pm24sc-position-center`
+//                  `pm24sc-position-center-left`
+//                  `pm24sc-position-center-right`
+//                  `pm24sc-position-cover`
+//
+// Modifiers:       `pm24sc-position-small`
+//                  `pm24sc-position-medium`
+//                  `pm24sc-position-large`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$position-small-margin:                                 $global-small-gutter !default;
+$position-medium-margin:                                $global-gutter !default;
+$position-large-margin:                                 $global-gutter !default;
+$position-large-margin-l:                               50px !default;
+
+
+/* ========================================================================
+   Component: Position
+ ========================================================================== */
+
+
+/* Directions
+ ========================================================================== */
+
+/*
+ * 1. Prevent content overflow if `max-width: 100%` is used inside position container.
+ */
+
+[class*='pm24sc-position-top'],
+[class*='pm24sc-position-bottom'],
+[class*='pm24sc-position-left'],
+[class*='pm24sc-position-right'],
+[class*='pm24sc-position-center'] {
+    position: absolute !important;
+    /* 1 */
+    max-width: 100%;
+}
+
+
+/* Edges
+ ========================================================================== */
+
+/* Don't use `width: 100%` because it is wrong if the parent has padding. */
+.pm24sc-position-top {
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.pm24sc-position-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.pm24sc-position-left {
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.pm24sc-position-right {
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* Corners
+ ========================================================================== */
+
+.pm24sc-position-top-left {
+    top: 0;
+    left: 0;
+}
+
+.pm24sc-position-top-right {
+    top: 0;
+    right: 0;
+}
+
+.pm24sc-position-bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.pm24sc-position-bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+/*
+ * Center
+ * 1. Fix text wrapping if content is larger than 50% of the container.
+ */
+
+.pm24sc-position-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    // /* 1 */
+    // width: max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.pm24sc-position-center:not([class*='pm24sc-width-']) {
+    /* 1 */
+    width: max-content;
+}
+
+/* Vertical */
+[class*='pm24sc-position-center-left'],
+[class*='pm24sc-position-center-right'] {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.pm24sc-position-center-left { left: 0; }
+.pm24sc-position-center-right { right: 0; }
+
+.pm24sc-position-center-left-out {
+    right: 100%;
+    width: max-content;
+}
+
+.pm24sc-position-center-right-out {
+    left: 100%;
+    width: max-content;
+}
+
+/* Horizontal */
+.pm24sc-position-top-center,
+.pm24sc-position-bottom-center {
+    left: 50%;
+    transform: translateX(-50%);
+    /* 1 */
+    width: max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.pm24sc-position-top-center { top: 0; }
+.pm24sc-position-bottom-center { bottom: 0; }
+
+
+/* Cover
+ ========================================================================== */
+
+.pm24sc-position-cover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+/* Utility
+ ========================================================================== */
+
+.pm24sc-position-relative { position: relative !important; }
+
+.pm24sc-position-absolute { position: absolute !important; }
+
+.pm24sc-position-fixed { position: fixed !important; }
+
+.pm24sc-position-z-index { z-index: 1; }
+
+
+/* Margin modifier
+ ========================================================================== */
+
+/*
+ * Small
+ */
+
+.pm24sc-position-small {
+    max-width: unquote('calc(100% - (#{$position-small-margin} * 2))');
+    margin: $position-small-margin;
+}
+
+.pm24sc-position-small.pm24sc-position-center { transform: translate(-50%, -50%) translate(-$position-small-margin, (-$position-small-margin)); }
+
+.pm24sc-position-small[class*='pm24sc-position-center-left'],
+.pm24sc-position-small[class*='pm24sc-position-center-right'] { transform: translateY(-50%) translateY(-$position-small-margin); }
+
+.pm24sc-position-small.pm24sc-position-top-center,
+.pm24sc-position-small.pm24sc-position-bottom-center { transform: translateX(-50%) translateX(-$position-small-margin); }
+
+/*
+ * Medium
+ */
+
+.pm24sc-position-medium {
+    max-width: unquote('calc(100% - (#{$position-medium-margin} * 2))');
+    margin: $position-medium-margin;
+}
+
+.pm24sc-position-medium.pm24sc-position-center { transform: translate(-50%, -50%) translate(-$position-medium-margin, (-$position-medium-margin)); }
+
+.pm24sc-position-medium[class*='pm24sc-position-center-left'],
+.pm24sc-position-medium[class*='pm24sc-position-center-right'] { transform: translateY(-50%) translateY(-$position-medium-margin); }
+
+.pm24sc-position-medium.pm24sc-position-top-center,
+.pm24sc-position-medium.pm24sc-position-bottom-center { transform: translateX(-50%) translateX(-$position-medium-margin); }
+
+/*
+ * Large
+ */
+
+.pm24sc-position-large {
+    max-width: unquote('calc(100% - (#{$position-large-margin} * 2))');
+    margin: $position-large-margin;
+}
+
+.pm24sc-position-large.pm24sc-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin, (-$position-large-margin)); }
+
+.pm24sc-position-large[class*='pm24sc-position-center-left'],
+.pm24sc-position-large[class*='pm24sc-position-center-right'] { transform: translateY(-50%) translateY(-$position-large-margin); }
+
+.pm24sc-position-large.pm24sc-position-top-center,
+.pm24sc-position-large.pm24sc-position-bottom-center { transform: translateX(-50%) translateX(-$position-large-margin); }
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-position-large {
+        max-width: unquote('calc(100% - (#{$position-large-margin-l} * 2))');
+        margin: $position-large-margin-l;
+    }
+
+    .pm24sc-position-large.pm24sc-position-center { transform: translate(-50%, -50%) translate(-$position-large-margin-l, (-$position-large-margin-l)); }
+
+    .pm24sc-position-large[class*='pm24sc-position-center-left'],
+    .pm24sc-position-large[class*='pm24sc-position-center-right'] { transform: translateY(-50%) translateY(-$position-large-margin-l); }
+
+    .pm24sc-position-large.pm24sc-position-top-center,
+    .pm24sc-position-large.pm24sc-position-bottom-center { transform: translateX(-50%) translateX(-$position-large-margin-l); }
+
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-position-misc)) {@include hook-position-misc();}
+
+// @mixin hook-position-misc(){}

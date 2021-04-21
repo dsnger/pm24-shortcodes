@@ -1,0 +1,430 @@
+// Name:            Animation
+// Description:     Utilities for keyframe animations
+//
+// Component:       `pm24sc-animation-*`
+//
+// Modifiers:       `pm24sc-animation-fade`
+//                  `pm24sc-animation-scale-up`
+//                  `pm24sc-animation-scale-down`
+//                  `pm24sc-animation-slide-top-*`
+//                  `pm24sc-animation-slide-bottom-*`
+//                  `pm24sc-animation-slide-left-*`
+//                  `pm24sc-animation-slide-right-*`
+//                  `pm24sc-animation-kenburns`
+//                  `pm24sc-animation-shake`
+//                  `pm24sc-animation-stroke`
+//                  `pm24sc-animation-reverse`
+//                  `pm24sc-animation-fast`
+//
+// Sub-objects:     `pm24sc-animation-toggle`
+//
+// States:          `pm24sc-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$animation-duration:                             0.5s !default;
+$animation-fade-duration:                        0.8s !default;
+$animation-stroke-duration:                      2s !default;
+$animation-kenburns-duration:                    15s !default;
+$animation-fast-duration:                        0.1s !default;
+
+$animation-slide-small-translate:                10px !default;
+$animation-slide-medium-translate:               50px !default;
+
+
+/* ========================================================================
+   Component: Animation
+ ========================================================================== */
+
+[class*='pm24sc-animation-'] {
+    animation-duration: $animation-duration;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+}
+
+
+/* Animations
+ ========================================================================== */
+
+/*
+ * Fade
+ */
+
+.pm24sc-animation-fade {
+    animation-name: pm24sc-fade;
+    animation-duration: $animation-fade-duration;
+    animation-timing-function: linear;
+}
+
+/*
+ * Scale
+ */
+
+.pm24sc-animation-scale-up { animation-name: pm24sc-fade-scale-02; }
+.pm24sc-animation-scale-down { animation-name: pm24sc-fade-scale-18; }
+
+/*
+ * Slide
+ */
+
+.pm24sc-animation-slide-top { animation-name: pm24sc-fade-top; }
+.pm24sc-animation-slide-bottom { animation-name: pm24sc-fade-bottom; }
+.pm24sc-animation-slide-left { animation-name: pm24sc-fade-left; }
+.pm24sc-animation-slide-right { animation-name: pm24sc-fade-right; }
+
+/*
+ * Slide Small
+ */
+
+.pm24sc-animation-slide-top-small { animation-name: pm24sc-fade-top-small; }
+.pm24sc-animation-slide-bottom-small { animation-name: pm24sc-fade-bottom-small; }
+.pm24sc-animation-slide-left-small { animation-name: pm24sc-fade-left-small; }
+.pm24sc-animation-slide-right-small { animation-name: pm24sc-fade-right-small; }
+
+/*
+ * Slide Medium
+ */
+
+.pm24sc-animation-slide-top-medium { animation-name: pm24sc-fade-top-medium; }
+.pm24sc-animation-slide-bottom-medium { animation-name: pm24sc-fade-bottom-medium; }
+.pm24sc-animation-slide-left-medium { animation-name: pm24sc-fade-left-medium; }
+.pm24sc-animation-slide-right-medium { animation-name: pm24sc-fade-right-medium; }
+
+/*
+ * Kenburns
+ */
+
+.pm24sc-animation-kenburns {
+    animation-name: pm24sc-scale-kenburns;
+    animation-duration: $animation-kenburns-duration;
+}
+
+/*
+ * Shake
+ */
+
+.pm24sc-animation-shake { animation-name: pm24sc-shake; }
+
+/*
+ * SVG Stroke
+ * The `--pm24sc-animation-stroke` custom property contains the longest path length.
+ * Set it manually or use `pm24sc-svg="stroke-animation: true"` to set it automatically.
+ * All strokes are animated by the same pace and doesn't end simultaneously.
+ * To end simultaneously, `pathLength="1"` could be used, but it's not working in Safari yet.
+ */
+
+.pm24sc-animation-stroke {
+    animation-name: pm24sc-stroke;
+    stroke-dasharray: var(--pm24sc-animation-stroke);
+    animation-duration: $animation-stroke-duration;
+}
+
+
+/* Direction modifier
+ ========================================================================== */
+
+ .pm24sc-animation-reverse {
+    animation-direction: reverse;
+    animation-timing-function: ease-in;
+}
+
+
+/* Duration modifier
+ ========================================================================== */
+
+ .pm24sc-animation-fast { animation-duration: $animation-fast-duration; }
+
+
+/* Toggle (Hover + Focus)
+========================================================================== */
+
+/*
+ * The toggle is triggered on touch devices using `:focus` and tabindex
+ */
+
+.pm24sc-animation-toggle:not(:hover):not(:focus) [class*='pm24sc-animation-'] { animation-name: none; }
+
+/*
+ * 1. Prevent tab highlighting on iOS.
+ */
+
+.pm24sc-animation-toggle {
+    /* 1 */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * Remove outline for `tabindex`
+ */
+
+.pm24sc-animation-toggle:focus { outline: none; }
+
+
+/* Keyframes used by animation classes
+ ========================================================================== */
+
+/*
+ * Fade
+ */
+
+@keyframes pm24sc-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/*
+ * Slide Top
+ */
+
+@keyframes pm24sc-fade-top {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Slide Bottom
+ */
+
+@keyframes pm24sc-fade-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Slide Left
+ */
+
+@keyframes pm24sc-fade-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*
+ * Slide Right
+ */
+
+@keyframes pm24sc-fade-right {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*
+ * Slide Top Small
+ */
+
+@keyframes pm24sc-fade-top-small {
+    0% {
+        opacity: 0;
+        transform: translateY(-$animation-slide-small-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Slide Bottom Small
+ */
+
+@keyframes pm24sc-fade-bottom-small {
+    0% {
+        opacity: 0;
+        transform: translateY($animation-slide-small-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Slide Left Small
+ */
+
+@keyframes pm24sc-fade-left-small {
+    0% {
+        opacity: 0;
+        transform: translateX(-$animation-slide-small-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*
+ * Slide Right Small
+ */
+
+@keyframes pm24sc-fade-right-small {
+    0% {
+        opacity: 0;
+        transform: translateX($animation-slide-small-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*
+ * Slide Top Medium
+ */
+
+@keyframes pm24sc-fade-top-medium {
+    0% {
+        opacity: 0;
+        transform: translateY(-$animation-slide-medium-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Slide Bottom Medium
+ */
+
+@keyframes pm24sc-fade-bottom-medium {
+    0% {
+        opacity: 0;
+        transform: translateY($animation-slide-medium-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+ * Slide Left Medium
+ */
+
+@keyframes pm24sc-fade-left-medium {
+    0% {
+        opacity: 0;
+        transform: translateX(-$animation-slide-medium-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*
+ * Slide Right Medium
+ */
+
+@keyframes pm24sc-fade-right-medium {
+    0% {
+        opacity: 0;
+        transform: translateX($animation-slide-medium-translate);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*
+ * Scale Up
+ */
+
+@keyframes pm24sc-fade-scale-02 {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/*
+ * Scale Down
+ */
+
+@keyframes pm24sc-fade-scale-18 {
+    0% {
+        opacity: 0;
+        transform: scale(1.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/*
+ * Kenburns
+ */
+
+@keyframes pm24sc-scale-kenburns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+/*
+ * Shake
+ */
+
+@keyframes pm24sc-shake {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-9px); }
+    20% { transform: translateX(8px); }
+    30% { transform: translateX(-7px); }
+    40% { transform: translateX(6px); }
+    50% { transform: translateX(-5px); }
+    60% { transform: translateX(4px); }
+    70% { transform: translateX(-3px); }
+    80% { transform: translateX(2px); }
+    90% { transform: translateX(-1px); }
+}
+
+/*
+ * Stroke
+ */
+
+ @keyframes pm24sc-stroke {
+    0% { stroke-dashoffset: var(--pm24sc-animation-stroke); }
+    100% { stroke-dashoffset: 0; }
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-animation-misc)) {@include hook-animation-misc();}
+
+// @mixin hook-animation-misc(){}

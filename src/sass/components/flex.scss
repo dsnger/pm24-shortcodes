@@ -1,0 +1,209 @@
+// Name:            Flex
+// Description:     Utilities for layouts based on flexbox
+//
+// Component:       `pm24sc-flex-*`
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Flex
+ ========================================================================== */
+
+.pm24sc-flex { display: flex; }
+.pm24sc-flex-inline { display: inline-flex; }
+
+/*
+ * Remove pseudo elements created by micro clearfix as precaution
+ */
+
+.pm24sc-flex::before,
+.pm24sc-flex::after,
+.pm24sc-flex-inline::before,
+.pm24sc-flex-inline::after { display: none; }
+
+
+/* Alignment
+ ========================================================================== */
+
+/*
+ * Align items along the main axis of the current line of the flex container
+ * Row: Horizontal
+ */
+
+// Default
+.pm24sc-flex-left { justify-content: flex-start; }
+.pm24sc-flex-center { justify-content: center; }
+.pm24sc-flex-right { justify-content: flex-end; }
+.pm24sc-flex-between { justify-content: space-between; }
+.pm24sc-flex-around { justify-content: space-around; }
+
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-flex-left\@s { justify-content: flex-start; }
+    .pm24sc-flex-center\@s { justify-content: center; }
+    .pm24sc-flex-right\@s { justify-content: flex-end; }
+    .pm24sc-flex-between\@s { justify-content: space-between; }
+    .pm24sc-flex-around\@s { justify-content: space-around; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-flex-left\@m { justify-content: flex-start; }
+    .pm24sc-flex-center\@m { justify-content: center; }
+    .pm24sc-flex-right\@m { justify-content: flex-end; }
+    .pm24sc-flex-between\@m { justify-content: space-between; }
+    .pm24sc-flex-around\@m { justify-content: space-around; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-flex-left\@l { justify-content: flex-start; }
+    .pm24sc-flex-center\@l { justify-content: center; }
+    .pm24sc-flex-right\@l { justify-content: flex-end; }
+    .pm24sc-flex-between\@l { justify-content: space-between; }
+    .pm24sc-flex-around\@l { justify-content: space-around; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    .pm24sc-flex-left\@xl { justify-content: flex-start; }
+    .pm24sc-flex-center\@xl { justify-content: center; }
+    .pm24sc-flex-right\@xl { justify-content: flex-end; }
+    .pm24sc-flex-between\@xl { justify-content: space-between; }
+    .pm24sc-flex-around\@xl { justify-content: space-around; }
+
+}
+
+/*
+ * Align items in the cross axis of the current line of the flex container
+ * Row: Vertical
+ */
+
+// Default
+.pm24sc-flex-stretch { align-items: stretch; }
+.pm24sc-flex-top { align-items: flex-start; }
+.pm24sc-flex-middle { align-items: center; }
+.pm24sc-flex-bottom { align-items: flex-end; }
+
+
+/* Direction
+ ========================================================================== */
+
+// Default
+.pm24sc-flex-row { flex-direction: row; }
+.pm24sc-flex-row-reverse { flex-direction: row-reverse; }
+.pm24sc-flex-column { flex-direction: column; }
+.pm24sc-flex-column-reverse { flex-direction: column-reverse; }
+
+
+/* Wrap
+ ========================================================================== */
+
+// Default
+.pm24sc-flex-nowrap { flex-wrap: nowrap; }
+.pm24sc-flex-wrap { flex-wrap: wrap; }
+.pm24sc-flex-wrap-reverse { flex-wrap: wrap-reverse; }
+
+/*
+ * Aligns items within the flex container when there is extra space in the cross-axis
+ * Only works if there is more than one line of flex items
+ */
+
+// Default
+.pm24sc-flex-wrap-stretch { align-content: stretch; }
+.pm24sc-flex-wrap-top { align-content: flex-start; }
+.pm24sc-flex-wrap-middle { align-content: center; }
+.pm24sc-flex-wrap-bottom { align-content: flex-end; }
+.pm24sc-flex-wrap-between { align-content: space-between; }
+.pm24sc-flex-wrap-around { align-content: space-around; }
+
+
+/* Item ordering
+ ========================================================================== */
+
+/*
+ * Default is 0
+ */
+
+.pm24sc-flex-first { order: -1;}
+.pm24sc-flex-last { order: 99;}
+
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-flex-first\@s { order: -1; }
+    .pm24sc-flex-last\@s { order: 99; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-flex-first\@m { order: -1; }
+    .pm24sc-flex-last\@m { order: 99; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-flex-first\@l { order: -1; }
+    .pm24sc-flex-last\@l { order: 99; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    .pm24sc-flex-first\@xl { order: -1; }
+    .pm24sc-flex-last\@xl { order: 99; }
+
+}
+
+
+/* Item dimensions
+ ========================================================================== */
+
+/*
+ * Initial: 0 1 auto
+ * Content dimensions, but shrinks
+ */
+
+/*
+ * No Flex: 0 0 auto
+ * Content dimensions
+ */
+
+.pm24sc-flex-none { flex: none; }
+
+/*
+ * Relative Flex: 1 1 auto
+ * Space is allocated considering content
+ */
+
+.pm24sc-flex-auto { flex: auto; }
+
+/*
+ * Absolute Flex: 1 1 0%
+ * Space is allocated solely based on flex
+ */
+
+.pm24sc-flex-1 { flex: 1; }
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-flex-misc)) {@include hook-flex-misc();}
+
+// @mixin hook-flex-misc(){}

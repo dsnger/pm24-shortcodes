@@ -1,0 +1,273 @@
+// Name:            Text
+// Description:     Utilities for text
+//
+// Component:       `pm24sc-text-*`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$text-lead-font-size:                            $global-large-font-size !default;
+$text-lead-line-height:                          1.5 !default;
+$text-lead-color:                                $global-emphasis-color !default;
+
+$text-meta-font-size:                            $global-small-font-size !default;
+$text-meta-line-height:                          1.4 !default;
+$text-meta-color:                                $global-muted-color !default;
+
+$text-small-font-size:                           $global-small-font-size !default;
+$text-small-line-height:                         1.5 !default;
+
+$text-large-font-size:                           $global-large-font-size !default;
+$text-large-line-height:                         1.5 !default;
+
+$text-muted-color:                               $global-muted-color !default;
+$text-emphasis-color:                            $global-emphasis-color !default;
+$text-primary-color:                             $global-primary-background !default;
+$text-secondary-color:                           $global-secondary-background !default;
+$text-success-color:                             $global-success-background !default;
+$text-warning-color:                             $global-warning-background !default;
+$text-danger-color:                              $global-danger-background !default;
+
+$text-background-color:                          $global-primary-background !default;
+
+
+/* ========================================================================
+   Component: Text
+ ========================================================================== */
+
+
+/* Style modifiers
+ ========================================================================== */
+
+.pm24sc-text-lead {
+    font-size: $text-lead-font-size;
+    line-height: $text-lead-line-height;
+    color: $text-lead-color;
+    @if(mixin-exists(hook-text-lead)) {@include hook-text-lead();}
+}
+
+.pm24sc-text-meta {
+    font-size: $text-meta-font-size;
+    line-height: $text-meta-line-height;
+    color: $text-meta-color;
+    @if(mixin-exists(hook-text-meta)) {@include hook-text-meta();}
+}
+
+
+/* Size modifiers
+ ========================================================================== */
+
+.pm24sc-text-small {
+    font-size: $text-small-font-size;
+    line-height: $text-small-line-height;
+    @if(mixin-exists(hook-text-small)) {@include hook-text-small();}
+}
+
+.pm24sc-text-large {
+    font-size: $text-large-font-size;
+    line-height: $text-large-line-height;
+    @if(mixin-exists(hook-text-large)) {@include hook-text-large();}
+}
+
+
+/* Weight modifier
+ ========================================================================== */
+
+.pm24sc-text-light { font-weight: 300; }
+.pm24sc-text-normal { font-weight: 400; }
+.pm24sc-text-bold { font-weight: 700; }
+ 
+.pm24sc-text-lighter { font-weight: lighter; }
+.pm24sc-text-bolder { font-weight: bolder; }
+
+ 
+/* Style modifier
+ ========================================================================== */
+ 
+.pm24sc-text-italic { font-style: italic; }
+
+
+/* Transform modifier
+ ========================================================================== */
+
+.pm24sc-text-capitalize { text-transform: capitalize !important; }
+.pm24sc-text-uppercase { text-transform: uppercase !important; }
+.pm24sc-text-lowercase { text-transform: lowercase !important; }
+
+
+/* Color modifiers
+ ========================================================================== */
+
+.pm24sc-text-muted { color: $text-muted-color !important; }
+.pm24sc-text-emphasis { color: $text-emphasis-color !important; }
+.pm24sc-text-primary { color: $text-primary-color !important; }
+.pm24sc-text-secondary { color: $text-secondary-color !important; }
+.pm24sc-text-success { color: $text-success-color !important; }
+.pm24sc-text-warning { color: $text-warning-color !important; }
+.pm24sc-text-danger { color: $text-danger-color !important; }
+
+
+/* Background modifier
+ ========================================================================== */
+
+/*
+ * 1. The background clips to the foreground text. Works in Chrome, Firefox, Safari, Edge and Opera
+ *    Default color is set to transparent
+ * 2. Container fits the text
+ * 3. Fallback color for IE11
+ */
+
+.pm24sc-text-background {
+    /* 1 */
+    -webkit-background-clip: text;
+    /* 2 */
+    display: inline-block;
+    /* 3 */
+    color: $text-background-color !important;
+}
+
+@supports (-webkit-background-clip: text) {
+
+    .pm24sc-text-background {
+        background-color: $text-background-color;
+        color: transparent !important;
+        @if(mixin-exists(hook-text-background)) {@include hook-text-background();}
+    }
+
+}
+
+
+/* Alignment modifiers
+ ========================================================================== */
+
+.pm24sc-text-left { text-align: left !important; }
+.pm24sc-text-right { text-align: right !important; }
+.pm24sc-text-center { text-align: center !important; }
+.pm24sc-text-justify { text-align: justify !important; }
+
+/* Phone landscape and bigger */
+@media (min-width: $breakpoint-small) {
+
+    .pm24sc-text-left\@s { text-align: left !important; }
+    .pm24sc-text-right\@s { text-align: right !important; }
+    .pm24sc-text-center\@s { text-align: center !important; }
+
+}
+
+/* Tablet landscape and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-text-left\@m { text-align: left !important; }
+    .pm24sc-text-right\@m { text-align: right !important; }
+    .pm24sc-text-center\@m { text-align: center !important; }
+
+}
+
+/* Desktop and bigger */
+@media (min-width: $breakpoint-large) {
+
+    .pm24sc-text-left\@l { text-align: left !important; }
+    .pm24sc-text-right\@l { text-align: right !important; }
+    .pm24sc-text-center\@l { text-align: center !important; }
+
+}
+
+/* Large screen and bigger */
+@media (min-width: $breakpoint-xlarge) {
+
+    .pm24sc-text-left\@xl { text-align: left !important; }
+    .pm24sc-text-right\@xl { text-align: right !important; }
+    .pm24sc-text-center\@xl { text-align: center !important; }
+
+}
+
+/*
+ * Vertical
+ */
+
+.pm24sc-text-top { vertical-align: top !important; }
+.pm24sc-text-middle { vertical-align: middle !important; }
+.pm24sc-text-bottom { vertical-align: bottom !important; }
+.pm24sc-text-baseline { vertical-align: baseline !important; }
+
+
+/* Wrap modifiers
+ ========================================================================== */
+
+/*
+ * Prevent text from wrapping onto multiple lines
+ */
+
+.pm24sc-text-nowrap { white-space: nowrap; }
+
+/*
+ * 1. Make sure a max-width is set after which truncation can occur
+ * 2. Prevent text from wrapping onto multiple lines, and truncate with an ellipsis
+ * 3. Fix for table cells
+ */
+
+.pm24sc-text-truncate {
+    /* 1 */
+    max-width: 100%;
+    /* 2 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 2 */
+th.pm24sc-text-truncate,
+td.pm24sc-text-truncate { max-width: 0; }
+
+
+/*
+ * 1. Wrap long words onto the next line and break them if they are too long to fit
+ * 2. Legacy `word-wrap` as fallback for `overflow-wrap`
+ * 3. Fix `overflow-wrap` which doesn't work with table cells in Chrome, Opera, IE11 and Edge
+ *    Must use `break-all` to support IE11 and Edge
+ * Note: Not using `hyphens: auto;` because it hyphenates text even if not needed
+ */
+
+.pm24sc-text-break {
+    /* 1 */
+    overflow-wrap: break-word;
+    /* 2 */
+    word-wrap: break-word;
+}
+
+/* 3 */
+th.pm24sc-text-break,
+td.pm24sc-text-break { word-break: break-all; }
+
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-text-misc)) {@include hook-text-misc();}
+
+// @mixin hook-text-lead(){}
+// @mixin hook-text-meta(){}
+// @mixin hook-text-small(){}
+// @mixin hook-text-large(){}
+// @mixin hook-text-background(){}
+// @mixin hook-text-misc(){}
+
+
+// Inverse
+// ========================================================================
+
+$inverse-text-lead-color:                       $inverse-global-color !default;
+$inverse-text-meta-color:                       $inverse-global-muted-color !default;
+$inverse-text-muted-color:                      $inverse-global-muted-color !default;
+$inverse-text-emphasis-color:                   $inverse-global-emphasis-color !default;
+$inverse-text-primary-color:                    $inverse-global-primary-background !default;
+$inverse-text-secondary-color:                  $inverse-global-primary-background !default;
+
+
+
+// @mixin hook-inverse-text-lead(){}
+// @mixin hook-inverse-text-meta(){}

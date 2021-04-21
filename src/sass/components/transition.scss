@@ -1,0 +1,157 @@
+// Name:            Transition
+// Description:     Utilities for transitions
+//
+// Component:       `pm24sc-transition-*`
+//
+// Modifiers:       `pm24sc-transition-fade`
+//                  `pm24sc-transition-scale-up`
+//                  `pm24sc-transition-scale-down`
+//                  `pm24sc-transition-slide-top-*`
+//                  `pm24sc-transition-slide-bottom-*`
+//                  `pm24sc-transition-slide-left-*`
+//                  `pm24sc-transition-slide-right-*`
+//                  `pm24sc-transition-opaque`
+//                  `pm24sc-transition-slow`
+//
+// Sub-objects:     `pm24sc-transition-toggle`,
+//                  `pm24sc-transition-active`
+//
+// States:          `pm24sc-active`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$transition-duration:                            0.3s !default;
+
+$transition-scale:                               1.1 !default;
+
+$transition-slide-small-translate:               10px !default;
+$transition-slide-medium-translate:              50px !default;
+
+$transition-slow-duration:                       0.7s !default;
+
+
+/* ========================================================================
+   Component: Transition
+ ========================================================================== */
+
+
+/* Toggle (Hover + Focus)
+ ========================================================================== */
+
+/*
+ * 1. Prevent tab highlighting on iOS.
+ */
+
+.pm24sc-transition-toggle {
+    /* 1 */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * Remove outline for `tabindex`
+ */
+
+.pm24sc-transition-toggle:focus { outline: none; }
+
+
+/* Transitions
+ ========================================================================== */
+
+/*
+ * The toggle is triggered on touch devices by two methods:
+ * 1. Using `:focus` and tabindex
+ * 2. Using `:hover` and a `touchstart` event listener registered on the document
+ *    (Doesn't work on Surface touch devices)
+ *
+ * Note: Transitions don't work with `pm24sc-postion-center-*` classes because they also use `transform`,
+ *       therefore it's recommended to use an extra `div` for the transition.
+ */
+
+.pm24sc-transition-fade,
+[class*='pm24sc-transition-scale'],
+[class*='pm24sc-transition-slide'] {
+    transition: $transition-duration ease-out;
+    transition-property: opacity, transform, filter;
+    opacity: 0;
+}
+
+/*
+ * Fade
+ */
+
+.pm24sc-transition-toggle:hover .pm24sc-transition-fade,
+.pm24sc-transition-toggle:focus .pm24sc-transition-fade,
+.pm24sc-transition-active.pm24sc-active .pm24sc-transition-fade { opacity: 1; }
+
+/*
+ * Scale
+ */
+
+.pm24sc-transition-scale-up { transform: scale(1,1); }
+.pm24sc-transition-scale-down { transform: scale($transition-scale,$transition-scale); }
+
+/* Show */
+.pm24sc-transition-toggle:hover .pm24sc-transition-scale-up,
+.pm24sc-transition-toggle:focus .pm24sc-transition-scale-up,
+.pm24sc-transition-active.pm24sc-active .pm24sc-transition-scale-up {
+    opacity: 1;
+    transform: scale($transition-scale,$transition-scale);
+}
+
+.pm24sc-transition-toggle:hover .pm24sc-transition-scale-down,
+.pm24sc-transition-toggle:focus .pm24sc-transition-scale-down,
+.pm24sc-transition-active.pm24sc-active .pm24sc-transition-scale-down {
+    opacity: 1;
+    transform: scale(1,1);
+}
+
+/*
+ * Slide
+ */
+
+.pm24sc-transition-slide-top { transform: translateY(-100%); }
+.pm24sc-transition-slide-bottom { transform: translateY(100%); }
+.pm24sc-transition-slide-left { transform: translateX(-100%); }
+.pm24sc-transition-slide-right { transform: translateX(100%); }
+
+.pm24sc-transition-slide-top-small { transform: translateY(-$transition-slide-small-translate); }
+.pm24sc-transition-slide-bottom-small { transform: translateY($transition-slide-small-translate); }
+.pm24sc-transition-slide-left-small { transform: translateX(-$transition-slide-small-translate); }
+.pm24sc-transition-slide-right-small { transform: translateX($transition-slide-small-translate); }
+
+.pm24sc-transition-slide-top-medium { transform: translateY(-$transition-slide-medium-translate); }
+.pm24sc-transition-slide-bottom-medium { transform: translateY($transition-slide-medium-translate); }
+.pm24sc-transition-slide-left-medium { transform: translateX(-$transition-slide-medium-translate); }
+.pm24sc-transition-slide-right-medium { transform: translateX($transition-slide-medium-translate); }
+
+/* Show */
+.pm24sc-transition-toggle:hover [class*='pm24sc-transition-slide'],
+.pm24sc-transition-toggle:focus [class*='pm24sc-transition-slide'],
+.pm24sc-transition-active.pm24sc-active [class*='pm24sc-transition-slide'] {
+    opacity: 1;
+    transform: translate(0,0);
+}
+
+
+/* Opacity modifier
+ ========================================================================== */
+
+.pm24sc-transition-opaque { opacity: 1; }
+
+
+/* Duration modifiers
+ ========================================================================== */
+
+.pm24sc-transition-slow { transition-duration: $transition-slow-duration; }
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-transition-misc)) {@include hook-transition-misc();}
+
+// @mixin hook-transition-misc(){}

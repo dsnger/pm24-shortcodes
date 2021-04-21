@@ -1,0 +1,160 @@
+// Name:            Comment
+// Description:     Component to create nested comments
+//
+// Component:       `pm24sc-comment`
+//
+// Sub-objects:     `pm24sc-comment-body`
+//                  `pm24sc-comment-header`
+//                  `pm24sc-comment-title`
+//                  `pm24sc-comment-meta`
+//                  `pm24sc-comment-avatar`
+//                  `pm24sc-comment-list`
+//
+// Modifier:        `pm24sc-comment-primary`
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+
+$comment-header-margin-bottom:                   $global-margin !default;
+
+$comment-title-font-size:                        $global-medium-font-size !default;
+$comment-title-line-height:                      1.4 !default;
+
+$comment-meta-font-size:                         $global-small-font-size !default;
+$comment-meta-line-height:                       1.4 !default;
+$comment-meta-color:                             $global-muted-color !default;
+
+$comment-list-margin-top:                        $global-large-margin !default;
+$comment-list-padding-left:                      30px !default;
+$comment-list-padding-left-m:                    100px !default;
+
+
+/* ========================================================================
+   Component: Comment
+ ========================================================================== */
+
+.pm24sc-comment {
+    @if(mixin-exists(hook-comment)) {@include hook-comment();}
+}
+
+
+/* Sections
+ ========================================================================== */
+
+.pm24sc-comment-body {
+    display: flow-root;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    @if(mixin-exists(hook-comment-body)) {@include hook-comment-body();}
+}
+
+.pm24sc-comment-header {
+    display: flow-root;
+    margin-bottom: $comment-header-margin-bottom;
+    @if(mixin-exists(hook-comment-header)) {@include hook-comment-header();}
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.pm24sc-comment-body > :last-child,
+.pm24sc-comment-header > :last-child { margin-bottom: 0; }
+
+
+/* Title
+ ========================================================================== */
+
+.pm24sc-comment-title {
+    font-size: $comment-title-font-size;
+    line-height: $comment-title-line-height;
+    @if(mixin-exists(hook-comment-title)) {@include hook-comment-title();}
+}
+
+
+/* Meta
+ ========================================================================== */
+
+.pm24sc-comment-meta {
+    font-size: $comment-meta-font-size;
+    line-height: $comment-meta-line-height;
+    color: $comment-meta-color;
+    @if(mixin-exists(hook-comment-meta)) {@include hook-comment-meta();}
+}
+
+
+/* Avatar
+ ========================================================================== */
+
+.pm24sc-comment-avatar {
+    @if(mixin-exists(hook-comment-avatar)) {@include hook-comment-avatar();}
+}
+
+
+/* List
+ ========================================================================== */
+
+.pm24sc-comment-list {
+    padding: 0;
+    list-style: none;
+}
+
+/* Adjacent siblings */
+.pm24sc-comment-list > :nth-child(n+2) {
+    margin-top: $comment-list-margin-top;
+    @if(mixin-exists(hook-comment-list-adjacent)) {@include hook-comment-list-adjacent();}
+}
+
+/*
+ * Sublists
+ * Note: General sibling selector allows reply block between comment and sublist
+ */
+
+.pm24sc-comment-list .pm24sc-comment ~ ul {
+    margin: $comment-list-margin-top 0 0 0;
+    padding-left: $comment-list-padding-left;
+    list-style: none;
+    @if(mixin-exists(hook-comment-list-sub)) {@include hook-comment-list-sub();}
+}
+
+/* Tablet and bigger */
+@media (min-width: $breakpoint-medium) {
+
+    .pm24sc-comment-list .pm24sc-comment ~ ul { padding-left: $comment-list-padding-left-m; }
+
+}
+
+/* Adjacent siblings */
+.pm24sc-comment-list .pm24sc-comment ~ ul > :nth-child(n+2) {
+    margin-top: $comment-list-margin-top;
+    @if(mixin-exists(hook-comment-list-sub-adjacent)) {@include hook-comment-list-sub-adjacent();}
+}
+
+
+/* Style modifier
+ ========================================================================== */
+
+.pm24sc-comment-primary {
+    @if(mixin-exists(hook-comment-primary)) {@include hook-comment-primary();}
+}
+
+
+// Hooks
+// ========================================================================
+
+@if(mixin-exists(hook-comment-misc)) {@include hook-comment-misc();}
+
+// @mixin hook-comment(){}
+// @mixin hook-comment-body(){}
+// @mixin hook-comment-header(){}
+// @mixin hook-comment-title(){}
+// @mixin hook-comment-meta(){}
+// @mixin hook-comment-avatar(){}
+// @mixin hook-comment-list-adjacent(){}
+// @mixin hook-comment-list-sub(){}
+// @mixin hook-comment-list-sub-adjacent(){}
+// @mixin hook-comment-primary(){}
+// @mixin hook-comment-misc(){}
