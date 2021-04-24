@@ -10,7 +10,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Projektmanagement24 Shortcodes
- * Plugin URI:        projektmanagement24.de
+ * Plugin URI:        github.com/dsnger/pm24-shortcodes
  * Description:       Plugin for Projektmanagement24.de PM24-Produkte Shortcodes zur Ausgabe in verschiedenen Listen- und Single-Templates
  * Version:           1.0.2
  * Author:            Daniel Sänger
@@ -74,7 +74,17 @@ require_once(PM24SC_PATH_INC.'/pm24-shortcodes-shortcodes.php');
 require_once(PM24SC_PATH_INC . '/pm24-shortcodes-template-func.php');
 require_once(PM24SC_PATH_PUBLIC . '/pm24-shortcodes-public.php');
 
+
+
+/**
+ * 
+ * UPDATER
+ * @since    1.0.2
+ * 
+ */
+
 add_action( 'init', 'pm24_github_plugin_updater_test_init' );
+
 function pm24_github_plugin_updater_test_init() {
 
 	require_once(PM24SC_PATH_INC . '/updater.php');
@@ -89,7 +99,7 @@ function pm24_github_plugin_updater_test_init() {
 			'api_url' => 'https://api.github.com/repos/dsnger/pm24-shortcodes',
 			'raw_url' => 'https://raw.github.com/dsnger/pm24-shortcodes/master',
 			'github_url' => 'https://github.com/dsnger/pm24-shortcodes',
-			'zip_url' => 'https://github.com/dsnger/pm24-shortcodes/archive/master.zip',
+			'zip_url' => 'https://github.com/dsnger/pm24-shortcodes/archive/main.zip',
 			'sslverify' => true,
 			'requires' => '5.0',
 			'tested' => '5.7',
@@ -98,9 +108,7 @@ function pm24_github_plugin_updater_test_init() {
 		);
 
 		new WP_GitHub_Updater( $config );
-
 	}
-
 }
 
 
