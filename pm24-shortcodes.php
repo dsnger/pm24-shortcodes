@@ -74,8 +74,8 @@ require_once(PM24SC_PATH_INC.'/pm24-shortcodes-shortcodes.php');
 require_once(PM24SC_PATH_INC . '/pm24-shortcodes-template-func.php');
 require_once(PM24SC_PATH_PUBLIC . '/pm24-shortcodes-public.php');
 
-add_action( 'init', 'github_plugin_updater_test_init' );
-function github_plugin_updater_test_init() {
+add_action( 'init', 'pm24_github_plugin_updater_test_init' );
+function pm24_github_plugin_updater_test_init() {
 
 	require_once(PM24SC_PATH_INC . '/updater.php');
 
