@@ -122,7 +122,13 @@ Falls der notwendige Custom Post Type "pm24_produkte" und die notwendigen ACF-Fe
 
 ## Changelog
 
-= 1.0.1 =
+~Current Version:1.0.3~
+
+-- 1.0.2
+
+- pm24-shortcodes-single.php - I added check if taxonomy_exists() before wp_get_post_terms() to avoid WP_Error
+
+-- 1.0.1
 
 - SCSS base.scss moved above .pm24-shortcodes to avoid style problems
 - v. 1.0.1 pm24-shortcodes-tmpl-post-list.php - Detailbutton margin geändert auf margin-top, Placeholder Image ergänzt

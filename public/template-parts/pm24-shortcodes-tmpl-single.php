@@ -5,7 +5,7 @@
  *
  * @link projektmanagement24.de
  * @since 1.0.0
- * @version 1.0.1
+ * @version 1.0.2
  *
  * @package pm24_shortcodes
  * @subpackage pm24_shortcodes/public/template-parts
@@ -21,23 +21,30 @@ $product_related_packages = get_related_packages_string($post_id);
 $lead_magnet_id = get_field('pm24_product_leadmagnet_id', $post_id);
 
 //Taxonomie Dokumenttyp (Berücksichtigt KEINE mehrfach Zuordnung)
-$doctype = wp_get_post_terms($post_id, 'pm24_doctype');
+if (taxonomy_exists('pm24_doctype')) $doctype = wp_get_post_terms($post_id, 'pm24_doctype');
 $doctype_name = (!empty($doctype)) ? $doctype[0]->name : '';
 $doctype_label_color = (!empty($doctype)) ? get_field('pm24_doctype_labelcolor', $doctype[0]->taxonomy . '_' . $doctype[0]->term_id) : '';
 
+
 //Taxonomie Wissensgebiet (Berücksichtigt KEINE mehrfach Zuordnung)
-$subject = wp_get_post_terms($post_id, 'pm24_subject');
-$subject_name = (!empty($subject)) ? 'Produkt aus: ' . $subject[0]->name : '';
+if (taxonomy_exists('pm24_subject')) $subject = wp_get_post_terms($post_id, 'pm24_subject');
+
+  $subject_name = (!empty($subject)) ? 'Produkt aus: ' . $subject[0]->name : '';
+
 
 //Taxonomie Phase
-$phase = wp_get_post_terms($post_id, 'pm24_phase');
-$phase_name = (!empty($phase)) ? ' | ' . $phase[0]->name : '';
-$product_meta = (!empty($subject_name) || !empty($phase_name)) ? '<p class="pm24sc-article-meta">' . $subject_name . $phase_name . '</p>' : '';
+if (taxonomy_exists('pm24_phase')) $phase = wp_get_post_terms($post_id, 'pm24_phase');
+
+  $phase_name = !empty($phase[0]) ? ' | ' . $phase[0]->name : '';
+  $product_meta = !empty($subject_name) || !empty($phase_name) ? '<p class="pm24sc-article-meta">' . $subject_name . $phase_name . '</p>' : '';
+
 
 //Taxonomie Dateiformat (Berücksichtigt mehrfach Zuordnung)
-$fileformats = wp_get_post_terms($post_id, 'pm24_fileformat');
-$fileformat_icons = array();
-$fileformat_filter_tag = '';
+if (taxonomy_exists('pm24_fileformat')) $fileformats = wp_get_post_terms($post_id, 'pm24_fileformat');
+
+  $fileformat_icons = array();
+  $fileformat_filter_tag = '';
+
 
 //Baue das Datei-Icon-HTML für jedes Dateiformat
 foreach ($fileformats as $fileformat) :
@@ -46,7 +53,6 @@ foreach ($fileformats as $fileformat) :
   $fileformat_img_url = (!empty($fileformat)) ? get_field('pm24_fileformat_icon', $fileformat->taxonomy . '_' . $fileformat->term_id) : '';
   $fileformat_icons[] = (!empty($fileformat) && !empty($fileformat_img_url)) ? '<span class="pm24sc-icon-button pm24sc-margin-small-right" pm24sc-tooltip="' . $fileformat_desc . '"><img src="' . $fileformat_img_url . '" class="pm24-shortcodes__fileformat_icon"></span>' : $fileformat_slug;
 endforeach;
-
 ?>
 
 <section class="pm24-shortcodes pm24sc-section pm24sc-section-small pm24-shortcodes__single">
@@ -55,8 +61,7 @@ endforeach;
       <article class="pm24sc-article">
         <?php if (!empty($doctype_name)) : ?>
           <!-- label -->
-          <span class=""><?= $doctype_name ?>
-          </span>
+          <span class=""><?= $doctype_name ?></span>
           <!-- /label -->
         <?php endif; ?>
 

@@ -6,14 +6,13 @@
  * Diese Datei wird von WordPress gelesen, um das Plugin zu initialisieren und zu laden. Damit stehen alle Plugin-Funktionen in WP uzur * Verfügung. Diese Datei enthält auch alle vom Plugin verwendeten Abhängigkeiten und definiert die Funktion, die das Plugin startet.
  *
  * @link              projektmanagement24.de
- * @since             1.1.1
  * @package           pm24_shortcodes_dev
  *
  * @wordpress-plugin
- * Plugin Name:       Projektmanagement24 Shortcodes Dev
+ * Plugin Name:       Projektmanagement24 Shortcodes
  * Plugin URI:        projektmanagement24.de
  * Description:       Plugin for Projektmanagement24.de PM24-Produkte Shortcodes zur Ausgabe in verschiedenen Listen- und Single-Templates
- * Version:           1.1.1
+ * Version:           1.0.2
  * Author:            Daniel Sänger
  * Author URI:        projektmanagement24.de
  * Text Domain:       pm24_shortcodes
@@ -74,6 +73,36 @@ define('PM24SC_PATH_ICONS', plugin_dir_url(__FILE__) . 'assets/icons');
 require_once(PM24SC_PATH_INC.'/pm24-shortcodes-shortcodes.php');
 require_once(PM24SC_PATH_INC . '/pm24-shortcodes-template-func.php');
 require_once(PM24SC_PATH_PUBLIC . '/pm24-shortcodes-public.php');
+
+add_action( 'init', 'github_plugin_updater_test_init' );
+function github_plugin_updater_test_init() {
+
+	require_once(PM24SC_PATH_INC . '/updater.php');
+
+	define( 'WP_GITHUB_FORCE_UPDATE', true );
+
+	if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
+
+		$config = array(
+			'slug' => plugin_basename( __FILE__ ),
+			'proper_folder_name' => 'pm24-shortcodes',
+			'api_url' => 'https://api.github.com/repos/dsnger/pm24-shortcodes',
+			'raw_url' => 'https://raw.github.com/dsnger/pm24-shortcodes/master',
+			'github_url' => 'https://github.com/dsnger/pm24-shortcodes',
+			'zip_url' => 'https://github.com/dsnger/pm24-shortcodes/archive/master.zip',
+			'sslverify' => true,
+			'requires' => '5.0',
+			'tested' => '5.7',
+			'readme' => 'README.md',
+			'access_token' => '',
+		);
+
+		new WP_GitHub_Updater( $config );
+
+	}
+
+}
+
 
 
 /**

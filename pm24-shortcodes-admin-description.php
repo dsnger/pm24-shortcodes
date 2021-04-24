@@ -6,7 +6,7 @@
  * Die Seite wird unter dem Menupunkt "Beschreibung & Hilfe" beim Post Type PM24-Produkte als Untermenu angezeigt!
  *
  * @link              projektmanagement24.de
- * @since             1.1.0
+ * @since             1.0.2
  * @package           pm24_shortcodes
  *
  */

@@ -1,5 +1,5 @@
 {
-  "name": "pm24_shortcodes",
+  "name": "pm24-shortcodes",
   "version": "1.0.0",
   "description": "",
   "main": "./tests/js/index.js",
