@@ -29,8 +29,8 @@ if (!defined('WPINC')) {
 /**
  * Plugin Version.
  */
-define('pm24_shortcodes_VERSION', '1.1.0');
-define('pm24_shortcodes_NAME', 'pm24_shortcodes');
+define('pm24_shortcodes_VERSION', '1.0.2');
+define('pm24_shortcodes_NAME', 'pm24-shortcodes');
 
 /**
  * 
