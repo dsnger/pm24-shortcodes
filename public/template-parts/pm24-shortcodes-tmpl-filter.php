@@ -7,6 +7,7 @@
  *
  * @link projektmanagement24.de
  * @since 1.0.0
+ * @version 1.0.1
  *
  * @package pm24_shortcodes
  * @subpackage pm24_shortcodes/public/template-parts

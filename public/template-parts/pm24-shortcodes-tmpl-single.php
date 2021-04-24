@@ -3,16 +3,13 @@
 /**
  * Die Datei beinhaltet das Template für die Singleansicht
  *
- *
  * @link projektmanagement24.de
  * @since 1.0.0
+ * @version 1.0.1
  *
  * @package pm24_shortcodes
  * @subpackage pm24_shortcodes/public/template-parts
  * @author Daniel Sänger <webmaster@daniel-saenger.de>
- *  * 
- * 
- * 
  */
 
 
@@ -41,6 +38,7 @@ $product_meta = (!empty($subject_name) || !empty($phase_name)) ? '<p class="pm24
 $fileformats = wp_get_post_terms($post_id, 'pm24_fileformat');
 $fileformat_icons = array();
 $fileformat_filter_tag = '';
+
 //Baue das Datei-Icon-HTML für jedes Dateiformat
 foreach ($fileformats as $fileformat) :
   $fileformat_slug = (!empty($fileformat->slug)) ? $fileformat->slug : '';
