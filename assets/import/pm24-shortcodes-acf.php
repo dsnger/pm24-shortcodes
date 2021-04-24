@@ -2,7 +2,7 @@
 
  /**
    * field groups: PM24 Produkte.
-   * @version 1.0.0
+   * @version 1.0.1
    */
 
   acf_add_local_field_group(array(
