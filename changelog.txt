@@ -1,39 +1,9 @@
 === Plugin Name ===
-Donate link: projektmanagement24.de (dev)
+Donate link: projektmanagement24.de
 Tags: Custom Post Type Shortcodes
 Requires at least: 1.1.0
 Tested up to: 1.1.0
 Stable tag: 1.1.0
-
-
-== Description ==
-
-Dieses WP-Plugin ist eine individuelle Spezialanwendung für die Seite Projektmanagement24.de. Es liefert Shortcodes, die genutzt werden können, um einen "pm24_produkte" - Custom Post Type auszugeben. Dazu ergänzt es, den auf anderem Wege (z. B. mit CPTUI-Plugin) erstellten Custom Post Type "pm24_produkte" und dessen individuellen Meta-Felder (Advanced Custom Fields), um bestimmte Ausgabe-Templates.
-
-Der Post Type "pm24_produkte" liefert Inhalte, die mit Digimember-Produkten verknüpft werden, um diese mit bestimmten Angaben zu erweitern: Bild, Videos, Preis, Readmore-Links...
-
-Die Zuordnung des Post Types mit dem Digimember-Produkt erfolgt über ein ACF-Feld "pm24_products_leadmagnet_id". Über dieses Id-Feld und das Feld "pm24_products_has" (= Ids der Digimember-Produkt-Bundles, die dieses Produkt beinhalten) werden auch die Nutzerrechte gesteuert. Die Ausgabe der "pm24_produkte"-Posts beinhaltet verschiedene Elemente, die von den Nutzerrechten abhängig sind.
-
-* Plugin Digimember muss aktiv sein!
-
-* Custom Post Type "pm24_produkte" müssen eingerichtet sein
-
-* Taxonomien für den Custom Post Type müssen eingerichtet sein
-
-* (eine PHP-Import-Datei des Custom Post Types ist unter: /assets/import/pm24-shortcodes-cpt.php)
-
-* Plugin ACF PRO muss aktiv sein
-
-* pm24_products ACF-Felder müssen eingerichtet sein
-
-* (eine PHP-Import-Datei des Custom Post Types ist unter: /assets/import/pm24-shortcodes-acf.php)
-
-
-== Installation ==
-
-Datei pm24_shortcodes.zip auf der Pluginseite hochladen oder per FTP im Pluginverzeichnis von WP entpacken.
-
-Falls der notwendige Custom Post Type "pm24_produkte" und die notwendigen ACF-Felder nicht installiert sind, können die Dateien /assets/import/pm24-shortcodes-cpt.php und /assets/import/pm24-shortcodes-acf.php in den Themeordner kopiert werden und in der functions.php des Themes eingebunden werden. Entweder den Code reinkopieren oder die Dateien per php inkludieren.
 
 
 == Changelog ==

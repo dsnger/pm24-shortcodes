@@ -1,5 +1,10 @@
 <?php if (function_exists('acf_add_local_field_group')) :
 
+ /**
+   * field groups: PM24 Produkte.
+   * @version 1.0.0
+   */
+
   acf_add_local_field_group(array(
     'key' => 'group_5efc9612c4bf6',
     'title' => 'PM24-Produkte CPT',

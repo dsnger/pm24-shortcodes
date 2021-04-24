@@ -4,6 +4,7 @@ function cptui_register_my_cpts()
 
   /**
    * Post Type: PM24 Produkte.
+   * @version 1.0.0
    */
 
   $labels = [
