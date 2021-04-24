@@ -7,35 +7,6 @@
     "jquery": "^3.5.1"
   },
   "devDependencies": {
-    "@mdi/font": "^5.3.45",
-    "aos": "^2.3.4",
-    "bourbon": "^5.1.0",
-    "bourbon-neat": "^3.0.1",
-    "cssnano": "^4.1.10",
-    "flexboxgrid": "^6.3.1",
-    "hamburgers": "^0.9.3",
-    "imagesloaded": "^4.1.4",
-    "js-cookie": "^2.2.1",
-    "latest": "^0.2.0",
-    "lazyload": "^2.0.0-rc.2",
-    "lazysizes": "^4.1.8",
-    "lg-autoplay": "^1.0.4",
-    "lg-fullscreen": "^1.1.0",
-    "lg-hash": "^1.0.4",
-    "lg-pager": "^1.0.2",
-    "lg-share": "^1.1.0",
-    "lg-thumbnail": "^1.1.0",
-    "lg-video": "^1.2.2",
-    "lg-zoom": "^1.1.0",
-    "lightgallery": "^1.6.12",
-    "masonry-layout": "^4.2.2",
-    "node-juice-sass": "^1.0.0",
-    "normalize-css": "^2.3.1",
-    "overlayscrollbars": "^1.10.0",
-    "picturefill": "^3.0.3",
-    "sass": "^1.25.0",
-    "sweetalert2": "^8.19.0",
-    "swiper": "^4.5.1",
     "uikit": "^3.5.3"
   },
   "scripts": {
@@ -45,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/dsnger/pm24-shortcodes"
   },
   "keywords": [
     "wordpress",
