@@ -122,7 +122,7 @@ Falls der notwendige Custom Post Type "pm24_produkte" und die notwendigen ACF-Fe
 
 ## Changelog
 
-~Current Version:1.0.3~
+~Current Version:1.0.2~
 
 -- 1.0.2
 
